@@ -1,0 +1,104 @@
+<div style="display:flex; flex-direction:column; gap:24px;">
+
+    <div>
+        <h1 style="margin:0; font-size:1.8rem; font-weight:800; color:#fff;">
+            Gestión de Índices JettraStore
+        </h1>
+        <p style="margin:4px 0 0 0; color:#94a3b8; font-size:0.92rem;">
+            Aceleración de consultas con índices B-Tree, tablas Hash, Vector HNSW y FullText.
+        </p>
+    </div>
+
+    <div jettras:id="indexFeedback"></div>
+
+    <div style="display:grid; grid-template-columns:2fr 1fr; gap:24px; align-items:flex-start;">
+        
+        <!-- Indexes Table -->
+        <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px;">
+            <h3 style="margin:0 0 16px 0; font-size:1.15rem; color:#fff; font-weight:700;">
+                Índices Definidos en el Clúster
+            </h3>
+
+            <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.9rem;">
+                    <thead>
+                        <tr style="border-bottom:2px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.75rem; text-transform:uppercase;">
+                            <th style="padding:10px;">Base de Datos</th>
+                            <th style="padding:10px;">Bucket</th>
+                            <th style="padding:10px;">Nombre Índice</th>
+                            <th style="padding:10px;">Tipo</th>
+                            <th style="padding:10px;">Campo</th>
+                            <th style="padding:10px;">Único</th>
+                            <th style="padding:10px; text-align:right;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr jettras:id="indexRows" style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                            <td style="padding:12px 10px; color:#38bdf8;">
+                                <span jettras:id="idxDb">ecommerce_db</span>
+                            </td>
+                            <td style="padding:12px 10px; font-family:monospace; color:#fff;">
+                                <span jettras:id="idxBucket">customers</span>
+                            </td>
+                            <td style="padding:12px 10px; font-weight:700; color:#eab308;">
+                                <span jettras:id="idxName">idx_customers_tier</span>
+                            </td>
+                            <td style="padding:12px 10px;">
+                                <span jettras:id="idxType" style="padding:2px 8px; border-radius:4px; font-size:0.75rem; background:rgba(56,189,248,0.15); color:#38bdf8;">BTree</span>
+                            </td>
+                            <td style="padding:12px 10px; color:#cbd5e1;">
+                                <span jettras:id="idxField">tier</span>
+                            </td>
+                            <td style="padding:12px 10px; font-size:0.8rem; color:#94a3b8;">
+                                <span jettras:id="idxUnique">NO</span>
+                            </td>
+                            <td style="padding:12px 10px; text-align:right;">
+                                <a jettras:id="linkDropIdx" href="#" onclick="return confirm("¿Desea eliminar este índice?");" style="padding:4px 8px; border-radius:6px; font-size:0.75rem; background:rgba(239,68,68,0.2); color:#ef4444; border:1px solid rgba(239,68,68,0.3); text-decoration:none;">Eliminar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Create Index Form -->
+        <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:22px;">
+            <h3 style="margin:0 0 16px 0; font-size:1.15rem; color:#fff; font-weight:700;">
+                Construir Nuevo Índice
+            </h3>
+
+            <form jettras:id="createIndexForm" style="display:flex; flex-direction:column; gap:12px;">
+                <div>
+                    <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:4px;">Base de Datos</label>
+                    <input jettras:id="idxDbInput" type="text" style="width:100%; box-sizing:border-box; padding:8px 10px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:6px; color:#fff; font-size:0.88rem;" />
+                </div>
+
+                <div>
+                    <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:4px;">Bucket / Colección</label>
+                    <input jettras:id="idxBucketInput" type="text" style="width:100%; box-sizing:border-box; padding:8px 10px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:6px; color:#fff; font-size:0.88rem;" />
+                </div>
+
+                <div>
+                    <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:4px;">Nombre del Índice</label>
+                    <input jettras:id="idxNameInput" type="text" style="width:100%; box-sizing:border-box; padding:8px 10px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:6px; color:#fff; font-size:0.88rem;" />
+                </div>
+
+                <div>
+                    <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:4px;">Tipo de Índice</label>
+                    <input jettras:id="idxTypeInput" type="text" style="width:100%; box-sizing:border-box; padding:8px 10px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:6px; color:#fff; font-size:0.88rem;" />
+                </div>
+
+                <div>
+                    <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:4px;">Campo Destino</label>
+                    <input jettras:id="idxFieldInput" type="text" style="width:100%; box-sizing:border-box; padding:8px 10px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:6px; color:#fff; font-size:0.88rem;" />
+                </div>
+
+                <button jettras:id="btnCreateIndex" type="submit" style="width:100%; padding:11px; border-radius:8px; font-weight:700; cursor:pointer; background:#22c55e; color:#0f172a; border:none; margin-top:6px;">
+                    + Construir Índice
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+</div>

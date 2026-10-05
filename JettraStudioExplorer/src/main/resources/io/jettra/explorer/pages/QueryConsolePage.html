@@ -1,0 +1,116 @@
+<div style="display:flex; flex-direction:column; gap:24px;">
+
+    <!-- TOP HEADER -->
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+        <div>
+            <h1 style="margin:0; font-size:1.8rem; font-weight:800; color:#fff;">
+                💻 Consola de Consultas JettraSQL &amp; JettraQL
+            </h1>
+            <p style="margin:4px 0 0 0; color:#94a3b8; font-size:0.92rem;">
+                Ejecución reactiva de consultas sobre <span jettras:id="queryTargetInfo" style="color:#38bdf8; font-weight:700;">ecommerce_db ➔ customers</span>.
+            </p>
+        </div>
+        <div>
+            <span jettras:id="queryTelemetryBadge" style="padding:6px 14px; border-radius:9999px; font-size:0.78rem; font-weight:800; background:rgba(34,197,94,0.15); color:#22c55e; border:1px solid #22c55e;">
+                JettraSQL ejecutado en 0.25 ms | 3 registros encontrados
+            </span>
+        </div>
+    </div>
+
+    <!-- DB & Bucket Fast Switchers -->
+    <div style="display:flex; flex-direction:column; gap:10px; background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:12px 18px;">
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <span style="font-size:0.75rem; text-transform:uppercase; font-weight:700; color:#64748b; margin-right:6px;">Base de Datos:</span>
+            <div jettras:id="queryDbList" style="display:inline-flex; margin-right:6px;">
+                <a jettras:id="linkQueryDb" href="#" style="padding:3px 9px; border-radius:6px; font-size:0.8rem; background:rgba(56,189,248,0.12); color:#38bdf8; border:1px solid rgba(56,189,248,0.25); text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+                    <span jettras:id="queryDbName">ecommerce_db</span>
+                    <span jettras:id="queryDbBadge" style="color:#22c55e; font-weight:700;"></span>
+                </a>
+            </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,0.05); padding-top:8px;">
+            <span style="font-size:0.75rem; text-transform:uppercase; font-weight:700; color:#64748b; margin-right:6px;">Bucket / Colección:</span>
+            <div jettras:id="queryBucketList" style="display:inline-flex; margin-right:6px;">
+                <a jettras:id="linkQueryBucket" href="#" style="padding:3px 8px; border-radius:6px; font-size:0.78rem; background:rgba(255,255,255,0.05); color:#cbd5e1; border:1px solid rgba(255,255,255,0.1); text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+                    <span jettras:id="queryBucketName">customers</span>
+                    <span jettras:id="queryBucketBadge" style="color:#eab308; font-weight:700;"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div jettras:id="queryFeedback"></div>
+
+    <!-- QUERY INPUT & BUTTONS -->
+    <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px;">
+        <form jettras:id="queryConsoleForm" style="display:flex; flex-direction:column; gap:12px;">
+            <div>
+                <label style="display:block; font-size:0.8rem; font-weight:700; color:#ffd700; margin-bottom:6px;">
+                    ⚡ Sentencia SQL / JettraQL / Expresión de Búsqueda:
+                </label>
+                <input jettras:id="queryInputField" type="text" style="width:100%; box-sizing:border-box; padding:12px 14px; background:#05080c; border:1px solid #334155; border-radius:8px; color:#00ff66; font-family:monospace; font-size:0.95rem;" />
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+                <!-- Query Snippets Helper -->
+                <div style="display:flex; gap:6px; flex-wrap:wrap; font-size:0.75rem;">
+                    <span style="color:#64748b; align-self:center;">Plantillas:</span>
+                    <button type="button" onclick="document.querySelector('input[type=text]').value='VIP';" style="background:#1e293b; color:#38bdf8; border:1px solid rgba(56,189,248,0.2); padding:3px 8px; border-radius:4px; cursor:pointer;">tier == 'VIP'</button>
+                    <button type="button" onclick="document.querySelector('input[type=text]').value='price > 100';" style="background:#1e293b; color:#22c55e; border:1px solid rgba(34,197,94,0.2); padding:3px 8px; border-radius:4px; cursor:pointer;">price &gt; 100</button>
+                    <button type="button" onclick="document.querySelector('input[type=text]').value='KNN_SEARCH vector_3d';" style="background:#1e293b; color:#eab308; border:1px solid rgba(234,179,8,0.2); padding:3px 8px; border-radius:4px; cursor:pointer;">KNN_SEARCH Vector</button>
+                    <button type="button" onclick="document.querySelector('input[type=text]').value='';" style="background:#1e293b; color:#94a3b8; border:1px solid #334155; padding:3px 8px; border-radius:4px; cursor:pointer;">Limpiar</button>
+                </div>
+
+                <div style="display:flex; gap:10px;">
+                    <button jettras:id="btnRunSql" type="submit" style="padding:10px 18px; border-radius:6px; background:#0284c7; color:#fff; border:none; font-weight:700; cursor:pointer;">
+                        ⚡ Ejecutar JettraSQL
+                    </button>
+                    <button jettras:id="btnRunQl" type="submit" style="padding:10px 18px; border-radius:6px; background:#22c55e; color:#0f172a; border:none; font-weight:800; cursor:pointer;">
+                        🚀 Ejecutar JettraQL
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- QUERY RESULTS TABLE -->
+    <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px;">
+        <h3 style="margin:0 0 14px 0; font-size:1.1rem; color:#fff; font-weight:700;">
+            Resultados de la Consulta
+        </h3>
+
+        <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.88rem;">
+                <thead>
+                    <tr style="border-bottom:2px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.75rem; text-transform:uppercase;">
+                        <th style="padding:10px;">ID Registro</th>
+                        <th style="padding:10px;">Bucket</th>
+                        <th style="padding:10px;">Payload Extraído</th>
+                        <th style="padding:10px;">Motor</th>
+                        <th style="padding:10px; text-align:right;">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr jettras:id="queryResultRows" style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                        <td style="padding:10px; font-family:monospace; font-weight:700; color:#ffd700;">
+                            <span jettras:id="resId">CUST-101</span>
+                        </td>
+                        <td style="padding:10px; color:#cbd5e1;">
+                            <span jettras:id="resBucket">customers</span>
+                        </td>
+                        <td style="padding:10px; font-family:monospace; color:#00ff66; font-size:0.8rem; max-width:350px; overflow:hidden; text-overflow:ellipsis;">
+                            <span jettras:id="resPayload">{"name":"Empresa Alfa SA","tier":"VIP"}</span>
+                        </td>
+                        <td style="padding:10px; color:#38bdf8;">
+                            <span jettras:id="resType">Document</span>
+                        </td>
+                        <td style="padding:10px; text-align:right;">
+                            <a jettras:id="linkResEdit" href="#" style="padding:4px 10px; border-radius:6px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; border:1px solid rgba(56,189,248,0.3); text-decoration:none;">Editar Registro</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

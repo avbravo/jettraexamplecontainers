@@ -1,0 +1,113 @@
+<div style="display:flex; flex-direction:column; gap:24px;">
+
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+        <div>
+            <h1 style="margin:0; font-size:1.8rem; font-weight:800; color:#fff;">
+                🗄️ Bases de Datos JettraStore
+            </h1>
+            <p style="margin:4px 0 0 0; color:#94a3b8; font-size:0.92rem;">
+                Administración integral (CRUD), esquemas multimodelos y particionado en clúster. Total activas: <strong jettras:id="totalDbsCount" style="color:#38bdf8;">4</strong>.
+            </p>
+        </div>
+    </div>
+
+    <div jettras:id="dbFeedback"></div>
+
+    <div style="display:grid; grid-template-columns: 1.8fr 1.2fr; gap:24px; align-items:flex-start;">
+        
+        <!-- Databases Table (READ & DELETE) -->
+        <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px;">
+            <h3 style="margin:0 0 16px 0; font-size:1.15rem; color:#fff; font-weight:700;">
+                Bases de Datos Activas
+            </h3>
+
+            <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.88rem;">
+                    <thead>
+                        <tr style="border-bottom:2px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.75rem; text-transform:uppercase;">
+                            <th style="padding:10px;">Nombre Base de Datos</th>
+                            <th style="padding:10px;">Estado</th>
+                            <th style="padding:10px;">Motores</th>
+                            <th style="padding:10px;">Registros</th>
+                            <th style="padding:10px;">Tamaño</th>
+                            <th style="padding:10px; text-align:right;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr jettras:id="dbRows" style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                            <td style="padding:12px 10px; font-weight:700; color:#38bdf8;">
+                                <span jettras:id="dbName">ecommerce_db</span>
+                            </td>
+                            <td style="padding:12px 10px;">
+                                <span jettras:id="dbStatus" style="padding:2px 8px; border-radius:4px; font-size:0.72rem; font-weight:700; background:rgba(34,197,94,0.15); color:#22c55e;">ACTIVE</span>
+                            </td>
+                            <td style="padding:12px 10px; color:#fff;">
+                                <span jettras:id="dbEngines">3</span>
+                            </td>
+                            <td style="padding:12px 10px; color:#cbd5e1;">
+                                <span jettras:id="dbRecords">1,250</span>
+                            </td>
+                            <td style="padding:12px 10px; color:#eab308; font-weight:600;">
+                                <span jettras:id="dbSize">1.4 MB</span>
+                            </td>
+                            <td style="padding:12px 10px; text-align:right; white-space:nowrap;">
+                                <a jettras:id="linkRecords" href="#" style="padding:4px 8px; border-radius:6px; font-size:0.75rem; background:rgba(56,189,248,0.15); color:#38bdf8; border:1px solid #38bdf8; text-decoration:none; margin-right:4px;">Registros</a>
+                                <a jettras:id="linkEngines" href="#" style="padding:4px 8px; border-radius:6px; font-size:0.75rem; background:#3b82f6; color:#fff; text-decoration:none; margin-right:4px;">Motores</a>
+                                <a jettras:id="linkEdit" href="#" style="padding:4px 8px; border-radius:6px; font-size:0.75rem; background:rgba(234,179,8,0.2); color:#eab308; border:1px solid rgba(234,179,8,0.3); text-decoration:none; margin-right:4px;">Renombrar</a>
+                                <a jettras:id="linkDelete" href="#" onclick="return confirm('¿Desea eliminar permanentemente esta base de datos de JettraStore?');" style="padding:4px 8px; border-radius:6px; font-size:0.75rem; background:rgba(239,68,68,0.2); color:#ef4444; border:1px solid rgba(239,68,68,0.3); text-decoration:none;">Eliminar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Right Column: Create & Rename Forms (CREATE & UPDATE) -->
+        <div style="display:flex; flex-direction:column; gap:20px;">
+            
+            <!-- Create DB Form -->
+            <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:22px;">
+                <h3 style="margin:0 0 14px 0; font-size:1.15rem; color:#fff; font-weight:700;">
+                    ➕ Nueva Base de Datos
+                </h3>
+
+                <form jettras:id="createDbForm" style="display:flex; flex-direction:column; gap:12px;">
+                    <div>
+                        <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:6px;">Nombre de la BD</label>
+                        <input jettras:id="newDbInput" type="text" style="width:100%; box-sizing:border-box; padding:10px 12px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:8px; color:#fff; font-size:0.9rem;" />
+                    </div>
+
+                    <button jettras:id="btnCreateDb" type="submit" style="width:100%; padding:11px; border-radius:8px; font-weight:700; cursor:pointer; background:#22c55e; color:#0f172a; border:none; margin-top:4px;">
+                        + Crear Base de Datos
+                    </button>
+                </form>
+            </div>
+
+            <!-- Rename DB Form -->
+            <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:22px;">
+                <h3 style="margin:0 0 14px 0; font-size:1.15rem; color:#fff; font-weight:700;">
+                    ✏️ Renombrar Base de Datos
+                </h3>
+
+                <form jettras:id="renameDbForm" style="display:flex; flex-direction:column; gap:12px;">
+                    <div>
+                        <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:6px;">Nombre Actual</label>
+                        <input jettras:id="renameOldInput" type="text" style="width:100%; box-sizing:border-box; padding:9px 12px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:8px; color:#cbd5e1; font-size:0.9rem;" />
+                    </div>
+
+                    <div>
+                        <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:6px;">Nuevo Nombre</label>
+                        <input jettras:id="renameNewInput" type="text" style="width:100%; box-sizing:border-box; padding:9px 12px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:8px; color:#38bdf8; font-size:0.9rem;" />
+                    </div>
+
+                    <button jettras:id="btnRenameDb" type="submit" style="width:100%; padding:11px; border-radius:8px; font-weight:700; cursor:pointer; background:#3b82f6; color:#fff; border:none; margin-top:4px;">
+                        ✏️ Renombrar Base de Datos
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

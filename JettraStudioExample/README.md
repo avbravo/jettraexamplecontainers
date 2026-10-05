@@ -60,12 +60,39 @@ Basado en el diseño maestro [`TemplatePage`](src/main/java/io/jettra/examples/s
 
 ---
 
+### 5. CRUD Completo Reactivo (`ProductCrudPage` & `ProductRepository`)
+- **Ruta**: `/crud`
+- **Operaciones Completas**:
+  - **Create**: Formulario de alta rápida con validación y guardado inmediato.
+  - **Read**: Listado tabular dinámico con `ListView<Product>`, cálculo de stock, precios formateados y badges de estado.
+  - **Filter / Search**: Formulario de búsqueda con filtrado en tiempo real por ID, nombre o categoría.
+  - **Update**: Modo de edición reactiva con precarga de campos.
+  - **Delete**: Eliminación segura con confirmación y banner de notificación con `FeedbackPanel`.
+  - **Details**: Modal de inspección detallada de registros.
+
+### 6. Uso de Widgets Estilo JettraFlux dentro de JettraStudio (`FluxWidget`)
+- Componente adaptador: `io.jettra.studio.components.FluxWidget`.
+- Permite incrustar cualquier widget de **JettraFlux** (`StatCard`, `VisitorGraphCard`, `Avatar`, `MetricCard`, etc.) directamente en las plantillas HTML de **JettraStudio**:
+  ```java
+  add(FluxWidget.of("fluxProductStat", StatCard.of("Catálogo Loom CRUD", "Total Activos", "5 Items", true)));
+  ```
+- Soporte para renderizado temático coherente con el selector de temas activo.
+
+### 7. Seguridad a Nivel de Páginas (`@Secured` y `@NoLoginRequired`)
+- Anotaciones declarativas en el paquete `io.jettra.studio.security`:
+  - `@Secured(roles = {"ADMIN", "MANAGER"}, loginUrl = "/login")`: Restringe el acceso únicamente a usuarios autenticados con los roles designados. Si no hay sesión activa, redirige automáticamente con HTTP 302 a `loginUrl`. Si el rol no está autorizado, retorna HTTP 403 Forbidden.
+  - `@NoLoginRequired`: Permite el acceso público anónimo (usado en `LoginPage` y `HomePage`).
+- Control de sesión transparente mediante cookies HTTP (`jettra_user`, `jettra_role`).
+
+---
+
 ## 📂 Rutas Web Disponibles
 
 | Ruta | Descripción |
 |---|---|
 | `/` o `/login` | Formulario de autenticación con validación y cookies |
 | `/dashboard` | Dashboard maestro con diseño Top, Left, Center y Footer |
+| `/crud` | CRUD reactivo completo (Crear, Listar, Filtrar, Editar, Eliminar) + `FluxWidget` |
 | `/catalog` | Inventario y catálogo dinámico con `ListView<Product>` |
 | `/components` | Vitrina exhaustiva de todos los componentes JettraStudio |
 

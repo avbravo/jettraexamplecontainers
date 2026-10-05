@@ -26,6 +26,9 @@ import java.util.List;
  * - Modal dialogs.
  * - Form submission for inserting new records.
  */
+import io.jettra.studio.security.Secured;
+
+@Secured(roles = {"ADMIN", "MANAGER"}, loginUrl = "/login")
 public class CatalogPage extends BasePage {
 
     private List<Product> products;

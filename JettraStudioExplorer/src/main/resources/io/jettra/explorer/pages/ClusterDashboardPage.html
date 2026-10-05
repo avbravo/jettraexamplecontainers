@@ -1,0 +1,84 @@
+<div style="display:flex; flex-direction:column; gap:24px;">
+
+    <div>
+        <h1 style="margin:0; font-size:1.8rem; font-weight:800; color:#fff;">
+            Monitor de Nodos &amp; Clúster JettraStore
+        </h1>
+        <p style="margin:4px 0 0 0; color:#94a3b8; font-size:0.92rem;">
+            Supervisión continua en tiempo real de nodos distribuidos, topología, latencia y tráfico TPS.
+        </p>
+    </div>
+
+    <!-- Cluster Alert Banner -->
+    <div jettras:id="clusterAlert"></div>
+
+    <!-- 4 FluxWidget Metrics -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:18px;">
+        <div jettras:id="fluxActiveNodes"></div>
+        <div jettras:id="fluxGlobalTps"></div>
+        <div jettras:id="fluxLatency"></div>
+        <div jettras:id="fluxCpu"></div>
+    </div>
+
+    <!-- Nodes Real-Time Table -->
+    <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:22px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <h3 style="margin:0; font-size:1.15rem; color:#fff; font-weight:700;">
+                Topología y Estado de Nodos en Vivo
+            </h3>
+            <span style="font-size:0.8rem; color:#38bdf8; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.3); padding:4px 10px; border-radius:6px;">
+                Virtual Threads Loom Activos
+            </span>
+        </div>
+
+        <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.9rem;">
+                <thead>
+                    <tr style="border-bottom:2px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em;">
+                        <th style="padding:12px 10px;">ID Nodo</th>
+                        <th style="padding:12px 10px;">Nombre / Host</th>
+                        <th style="padding:12px 10px;">Endpoint</th>
+                        <th style="padding:12px 10px;">Rol Clúster</th>
+                        <th style="padding:12px 10px;">Estado</th>
+                        <th style="padding:12px 10px;">Latencia</th>
+                        <th style="padding:12px 10px;">CPU %</th>
+                        <th style="padding:12px 10px;">Memoria</th>
+                        <th style="padding:12px 10px; text-align:right;">TPS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr jettras:id="nodeRows" style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                        <td style="padding:12px 10px; font-family:monospace; font-weight:700; color:#38bdf8;">
+                            <span jettras:id="nodeId">node-01</span>
+                        </td>
+                        <td style="padding:12px 10px; font-weight:600; color:#fff;">
+                            <span jettras:id="nodeName">Loom-Master-Primary</span>
+                        </td>
+                        <td style="padding:12px 10px; color:#94a3b8; font-family:monospace;">
+                            <span jettras:id="nodeHostPort">10.0.1.10:9010</span>
+                        </td>
+                        <td style="padding:12px 10px;">
+                            <span jettras:id="nodeRole" style="padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700; background:rgba(234,179,8,0.15); color:#eab308;">LEADER</span>
+                        </td>
+                        <td style="padding:12px 10px;">
+                            <span jettras:id="nodeStatus" style="padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700; background:rgba(34,197,94,0.15); color:#22c55e;">ONLINE</span>
+                        </td>
+                        <td style="padding:12px 10px; color:#38bdf8;">
+                            <span jettras:id="nodeLatency">0.85 ms</span>
+                        </td>
+                        <td style="padding:12px 10px;">
+                            <span jettras:id="nodeCpu">14.2%</span>
+                        </td>
+                        <td style="padding:12px 10px; color:#cbd5e1;">
+                            <span jettras:id="nodeMemory">512 / 4096 MB</span>
+                        </td>
+                        <td style="padding:12px 10px; text-align:right; font-weight:700; color:#22c55e;">
+                            <span jettras:id="nodeTps">32,500</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,135 @@
+<div class="crud-container" style="display: flex; flex-direction: column; gap: 24px;">
+
+    <!-- Top Header and FluxWidget -->
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px;">
+        <div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <h1 jettras:id="crudTitle" style="margin: 0; font-size: 1.8rem; font-weight: 800; color: var(--jf-text, #ffffff);">
+                    Administración Integral de Productos
+                </h1>
+                <span jettras:id="totalCountBadge" style="background: rgba(56, 189, 248, 0.15); color: var(--jf-accent, #38bdf8); border: 1px solid rgba(56, 189, 248, 0.3); padding: 4px 10px; border-radius: 9999px; font-size: 0.8rem; font-weight: 700;">
+                    5 Registros
+                </span>
+            </div>
+            <p jettras:id="crudSubtitle" style="margin: 6px 0 0 0; color: var(--jf-text-secondary, #94a3b8); font-size: 0.95rem;">
+                CRUD reactivo con Virtual Threads, persistencia en memoria y FluxWidget
+            </p>
+        </div>
+
+        <!-- JettraFlux StatCard Widget rendered directly in JettraStudio template -->
+        <div style="min-width: 240px;">
+            <div jettras:id="fluxProductStat"></div>
+        </div>
+    </div>
+
+    <!-- Feedback Banner -->
+    <div jettras:id="crudFeedback"></div>
+
+    <!-- Main Grid: List Table + Create/Edit Form -->
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px; align-items: flex-start;">
+
+        <!-- LEFT: Table & Filter -->
+        <div style="background: var(--jf-surface, #1e293b); border: 1px solid var(--jf-border, rgba(255,255,255,0.08)); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+            
+            <!-- Search / Filter Bar -->
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                <form jettras:id="searchForm" style="display: flex; gap: 8px; flex: 1; max-width: 450px;">
+                    <input jettras:id="searchInput" type="text" style="flex: 1; padding: 10px 14px; background: rgba(15, 23, 42, 0.6); border: 1px solid var(--jf-border, rgba(255,255,255,0.12)); border-radius: 8px; color: #fff; font-size: 0.9rem;" />
+                    <button jettras:id="btnSearch" type="submit" style="padding: 10px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; background: #3b82f6; color: #fff; border: none;">Filtrar</button>
+                </form>
+                <a jettras:id="linkClearFilter" href="/crud" style="color: var(--jf-accent, #38bdf8); font-size: 0.85rem; text-decoration: none; font-weight: 500;">Limpiar filtro</a>
+            </div>
+
+            <!-- Table of Products -->
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--jf-border, rgba(255,255,255,0.1)); color: var(--jf-text-secondary, #94a3b8); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em;">
+                            <th style="padding: 12px 10px;">ID</th>
+                            <th style="padding: 12px 10px;">Nombre</th>
+                            <th style="padding: 12px 10px;">Categoría</th>
+                            <th style="padding: 12px 10px;">Stock</th>
+                            <th style="padding: 12px 10px;">Precio</th>
+                            <th style="padding: 12px 10px;">Estado</th>
+                            <th style="padding: 12px 10px; text-align: right;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr jettras:id="productRows" style="border-bottom: 1px solid var(--jf-border, rgba(255,255,255,0.06)); transition: background 0.15s ease;">
+                            <td style="padding: 12px 10px; font-family: monospace; font-weight: 700; color: var(--jf-accent, #38bdf8);">
+                                <span jettras:id="rowId">PROD-101</span>
+                            </td>
+                            <td style="padding: 12px 10px; font-weight: 600; color: #fff;">
+                                <span jettras:id="rowName">Servidor Edge Jettra</span>
+                            </td>
+                            <td style="padding: 12px 10px; color: var(--jf-text-secondary, #94a3b8);">
+                                <span jettras:id="rowCategory">Infraestructura</span>
+                            </td>
+                            <td style="padding: 12px 10px;">
+                                <span jettras:id="rowStock">15</span>
+                            </td>
+                            <td style="padding: 12px 10px; font-weight: 700; color: #22c55e;">
+                                <span jettras:id="rowPrice">$1,250.00</span>
+                            </td>
+                            <td style="padding: 12px 10px;">
+                                <span jettras:id="rowStatus" style="display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; background: rgba(34, 197, 94, 0.15); color: #22c55e;">ACTIVO</span>
+                            </td>
+                            <td style="padding: 12px 10px; text-align: right; white-space: nowrap;">
+                                <button jettras:id="btnDetail" style="padding: 5px 10px; border-radius: 6px; font-size: 0.8rem; background: #3b82f6; color: #fff; border: none; cursor: pointer; margin-right: 4px;">Ver</button>
+                                <a jettras:id="linkEdit" href="#" style="padding: 5px 10px; border-radius: 6px; font-size: 0.8rem; background: rgba(234, 179, 8, 0.2); color: #eab308; border: 1px solid rgba(234, 179, 8, 0.4); text-decoration: none; font-weight: 600; margin-right: 4px;">Editar</a>
+                                <a jettras:id="linkDelete" href="#" onclick="return confirm("¿Desea eliminar este producto?");" style="padding: 5px 10px; border-radius: 6px; font-size: 0.8rem; background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.4); text-decoration: none; font-weight: 600;">Eliminar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- RIGHT: Create / Update Form Panel -->
+        <div style="background: var(--jf-surface, #1e293b); border: 1px solid var(--jf-border, rgba(255,255,255,0.08)); border-radius: 12px; padding: 22px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--jf-border, rgba(255,255,255,0.08));">
+                <h3 style="margin: 0; font-size: 1.1rem; color: #fff; font-weight: 700;">Formulario de Producto</h3>
+                <span jettras:id="formModeLabel" style="font-size: 0.75rem; color: var(--jf-accent, #38bdf8); font-weight: 600;">Modo: Nuevo Registro</span>
+            </div>
+
+            <form jettras:id="crudForm" style="display: flex; flex-direction: column; gap: 14px;">
+                <div>
+                    <label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--jf-text-secondary, #94a3b8); margin-bottom: 6px;">ID del Producto</label>
+                    <input jettras:id="formIdInput" type="text" style="width: 100%; box-sizing: border-box; padding: 10px 12px; background: rgba(15, 23, 42, 0.8); border: 1px solid var(--jf-border, rgba(255,255,255,0.12)); border-radius: 8px; color: #fff; font-size: 0.9rem;" />
+                </div>
+
+                <div>
+                    <label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--jf-text-secondary, #94a3b8); margin-bottom: 6px;">Nombre</label>
+                    <input jettras:id="formNameInput" type="text" style="width: 100%; box-sizing: border-box; padding: 10px 12px; background: rgba(15, 23, 42, 0.8); border: 1px solid var(--jf-border, rgba(255,255,255,0.12)); border-radius: 8px; color: #fff; font-size: 0.9rem;" />
+                </div>
+
+                <div>
+                    <label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--jf-text-secondary, #94a3b8); margin-bottom: 6px;">Categoría</label>
+                    <input jettras:id="formCategoryInput" type="text" style="width: 100%; box-sizing: border-box; padding: 10px 12px; background: rgba(15, 23, 42, 0.8); border: 1px solid var(--jf-border, rgba(255,255,255,0.12)); border-radius: 8px; color: #fff; font-size: 0.9rem;" />
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div>
+                        <label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--jf-text-secondary, #94a3b8); margin-bottom: 6px;">Stock</label>
+                        <input jettras:id="formStockInput" type="number" style="width: 100%; box-sizing: border-box; padding: 10px 12px; background: rgba(15, 23, 42, 0.8); border: 1px solid var(--jf-border, rgba(255,255,255,0.12)); border-radius: 8px; color: #fff; font-size: 0.9rem;" />
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--jf-text-secondary, #94a3b8); margin-bottom: 6px;">Precio ($)</label>
+                        <input jettras:id="formPriceInput" type="text" style="width: 100%; box-sizing: border-box; padding: 10px 12px; background: rgba(15, 23, 42, 0.8); border: 1px solid var(--jf-border, rgba(255,255,255,0.12)); border-radius: 8px; color: #fff; font-size: 0.9rem;" />
+                    </div>
+                </div>
+
+                <div style="margin-top: 10px;">
+                    <button jettras:id="btnSaveProduct" type="submit" style="width: 100%; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; background: #22c55e; color: #000; border: none; font-size: 0.95rem;">Guardar Producto</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Details Modal Dialog -->
+    <div jettras:id="detailsModal">
+        <p>Inspección detallada de las propiedades del registro y auditoría del inventario.</p>
+    </div>
+
+</div>

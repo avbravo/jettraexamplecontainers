@@ -24,6 +24,7 @@
     <module>JettraKanban</module>
     <module>JettraStoreExample</module>
     <module>JettraStudioExample</module>
+    <module>JettraStudioExplorer</module>
     <module>JettraWebBackEnd</module>
     <module>JettraWebExample</module>
   </modules>

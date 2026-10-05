@@ -1,0 +1,81 @@
+<div style="display:flex; flex-direction:column; gap:24px;">
+
+    <div>
+        <h1 style="margin:0; font-size:1.8rem; font-weight:800; color:#fff;">
+            Motores Multi-Modelo en <span jettras:id="currentDbLabel" style="color:#38bdf8;">ecommerce_db</span>
+        </h1>
+        <p style="margin:4px 0 0 0; color:#94a3b8; font-size:0.92rem;">
+            Inspección de motores integrados: Document, Key-Value, Vector, Graph, TimeSeries, Columnar y Records.
+        </p>
+    </div>
+
+    <div jettras:id="engineFeedback"></div>
+
+    <div style="display:grid; grid-template-columns:2fr 1fr; gap:24px; align-items:flex-start;">
+        
+        <!-- Engines Table -->
+        <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px;">
+            <h3 style="margin:0 0 16px 0; font-size:1.15rem; color:#fff; font-weight:700;">
+                Colecciones &amp; Buckets Activos
+            </h3>
+
+            <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.9rem;">
+                    <thead>
+                        <tr style="border-bottom:2px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.75rem; text-transform:uppercase;">
+                            <th style="padding:10px;">Motor de Almacenamiento</th>
+                            <th style="padding:10px;">Colección / Bucket</th>
+                            <th style="padding:10px;">Registros</th>
+                            <th style="padding:10px;">Estado</th>
+                            <th style="padding:10px; text-align:right;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr jettras:id="engineRows" style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                            <td style="padding:12px 10px; font-weight:600; color:#eab308;">
+                                <span jettras:id="engineType">Document (JSON)</span>
+                            </td>
+                            <td style="padding:12px 10px; font-family:monospace; font-weight:700; color:#38bdf8;">
+                                <span jettras:id="bucketName">customers</span>
+                            </td>
+                            <td style="padding:12px 10px; color:#fff;">
+                                <span jettras:id="recordCount">3</span>
+                            </td>
+                            <td style="padding:12px 10px;">
+                                <span jettras:id="engineStatus" style="padding:2px 8px; border-radius:4px; font-size:0.72rem; font-weight:700; background:rgba(34,197,94,0.15); color:#22c55e;">READY</span>
+                            </td>
+                            <td style="padding:12px 10px; text-align:right;">
+                                <a jettras:id="linkViewRecords" href="#" style="padding:5px 10px; border-radius:6px; font-size:0.8rem; background:#3b82f6; color:#fff; text-decoration:none;">Explorar Datos</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Add Bucket Form -->
+        <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:22px;">
+            <h3 style="margin:0 0 16px 0; font-size:1.15rem; color:#fff; font-weight:700;">
+                Añadir Bucket a Motor
+            </h3>
+
+            <form jettras:id="addBucketForm" style="display:flex; flex-direction:column; gap:14px;">
+                <div>
+                    <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:6px;">Tipo de Motor</label>
+                    <input jettras:id="engineTypeInput" type="text" style="width:100%; box-sizing:border-box; padding:10px 12px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:8px; color:#fff; font-size:0.9rem;" />
+                </div>
+
+                <div>
+                    <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:6px;">Nombre del Bucket</label>
+                    <input jettras:id="bucketNameInput" type="text" style="width:100%; box-sizing:border-box; padding:10px 12px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:8px; color:#fff; font-size:0.9rem;" />
+                </div>
+
+                <button jettras:id="btnAddBucket" type="submit" style="width:100%; padding:12px; border-radius:8px; font-weight:700; cursor:pointer; background:#22c55e; color:#0f172a; border:none; margin-top:8px;">
+                    + Registrar Bucket
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+</div>

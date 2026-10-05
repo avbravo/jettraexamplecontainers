@@ -1,0 +1,148 @@
+<div style="display:flex; flex-direction:column; gap:24px;">
+
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+        <div>
+            <h1 style="margin:0; font-size:1.8rem; font-weight:800; color:#fff;">
+                📋 Explorador de Registros &amp; Unidades
+            </h1>
+            <p style="margin:4px 0 0 0; color:#94a3b8; font-size:0.92rem;">
+                Administración directa de datos (CRUD), esquemas y payloads en <span jettras:id="targetInfo" style="color:#38bdf8; font-weight:700;">ecommerce_db → customers</span>.
+            </p>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+            <span style="font-size:0.8rem; color:#94a3b8;">BD Activa:</span>
+            <span jettras:id="currentDbBadge" style="padding:4px 10px; border-radius:6px; background:#0284c7; color:#fff; font-weight:700; font-size:0.82rem;">ecommerce_db</span>
+            <span style="font-size:0.8rem; color:#94a3b8;">Bucket:</span>
+            <span jettras:id="currentBucketBadge" style="padding:4px 10px; border-radius:6px; background:#475569; color:#f8fafc; font-weight:700; font-size:0.82rem;">customers</span>
+        </div>
+    </div>
+
+    <!-- DB & Bucket Fast Switchers -->
+    <div style="display:flex; flex-direction:column; gap:10px; background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:14px 18px;">
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <span style="font-size:0.75rem; text-transform:uppercase; font-weight:700; color:#64748b; margin-right:6px;">Bases de Datos:</span>
+            <div jettras:id="dbNavList" style="display:inline-flex; margin-right:6px;">
+                <a jettras:id="linkSelectDb" href="#" style="padding:4px 10px; border-radius:6px; font-size:0.8rem; background:rgba(56,189,248,0.12); color:#38bdf8; border:1px solid rgba(56,189,248,0.25); text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+                    <span jettras:id="dbNavName">ecommerce_db</span>
+                    <span jettras:id="dbNavActiveBadge" style="color:#22c55e; font-weight:700; font-size:0.7rem;"></span>
+                </a>
+            </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,0.05); padding-top:8px;">
+            <span style="font-size:0.75rem; text-transform:uppercase; font-weight:700; color:#64748b; margin-right:6px;">Buckets / Colecciones:</span>
+            <div jettras:id="bucketNavList" style="display:inline-flex; margin-right:6px;">
+                <a jettras:id="linkSelectBucket" href="#" style="padding:3px 9px; border-radius:6px; font-size:0.78rem; background:rgba(255,255,255,0.05); color:#cbd5e1; border:1px solid rgba(255,255,255,0.1); text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+                    <span jettras:id="bucketNavName">customers</span>
+                    <span jettras:id="bucketNavActiveBadge" style="color:#eab308; font-weight:700; font-size:0.7rem;"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div jettras:id="recFeedback"></div>
+
+    <div style="display:grid; grid-template-columns: 1.8fr 1.2fr; gap:24px; align-items:flex-start;">
+        
+        <!-- Table & Filter (READ & DELETE) -->
+        <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px; display:flex; flex-direction:column; gap:16px;">
+            
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+                <form jettras:id="recSearchForm" style="display:flex; gap:8px; flex:1; max-width:400px;">
+                    <input jettras:id="recSearchInput" type="text" style="flex:1; padding:8px 12px; border-radius:6px; background:rgba(0,0,0,0.3); border:1px solid #334155; color:#fff; font-size:0.9rem;" />
+                    <button jettras:id="btnSearchRec" type="submit" style="padding:8px 14px; border-radius:6px; background:#3b82f6; color:#fff; border:none; font-weight:600; cursor:pointer;">Buscar</button>
+                </form>
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <span style="font-size:0.8rem; color:#94a3b8;">Total: <strong jettras:id="recordsCountBadge" style="color:#22c55e;">3</strong></span>
+                    <a jettras:id="linkClearRecSearch" href="#" style="color:#38bdf8; font-size:0.85rem; text-decoration:none;">Limpiar filtro</a>
+                </div>
+            </div>
+
+            <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.88rem;">
+                    <thead>
+                        <tr style="border-bottom:2px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.75rem; text-transform:uppercase;">
+                            <th style="padding:10px;">ID Registro</th>
+                            <th style="padding:10px;">Bucket</th>
+                            <th style="padding:10px;">Datos / Payload</th>
+                            <th style="padding:10px;">Tipo</th>
+                            <th style="padding:10px; text-align:right;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr jettras:id="recordRows" style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                            <td style="padding:10px; font-family:monospace; font-weight:700; color:#38bdf8; white-space:nowrap;">
+                                <span jettras:id="recId">CUST-101</span>
+                            </td>
+                            <td style="padding:10px; color:#cbd5e1; white-space:nowrap;">
+                                <span jettras:id="recBucket">customers</span>
+                            </td>
+                            <td style="padding:10px; font-family:monospace; font-size:0.8rem; color:#e2e8f0; max-width:280px; overflow:hidden; text-overflow:ellipsis;">
+                                <span jettras:id="recPayload">{"name":"Empresa Alfa SA"}</span>
+                            </td>
+                            <td style="padding:10px; font-size:0.75rem; color:#eab308; white-space:nowrap;">
+                                <span jettras:id="recType">Document</span>
+                            </td>
+                            <td style="padding:10px; text-align:right; white-space:nowrap;">
+                                <a jettras:id="linkEditRec" href="#" style="padding:4px 8px; border-radius:6px; font-size:0.75rem; background:rgba(56,189,248,0.2); color:#38bdf8; border:1px solid rgba(56,189,248,0.3); text-decoration:none; margin-right:4px;">Editar</a>
+                                <a jettras:id="linkDeleteRec" href="#" onclick="return confirm('¿Eliminar este registro de la base de datos?');" style="padding:4px 8px; border-radius:6px; font-size:0.75rem; background:rgba(239,68,68,0.2); color:#ef4444; border:1px solid rgba(239,68,68,0.3); text-decoration:none;">Borrar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Right Column: Insert & Edit Forms (CREATE & UPDATE) -->
+        <div style="display:flex; flex-direction:column; gap:20px;">
+
+            <!-- Insert Record Form (CREATE) -->
+            <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:22px;">
+                <h3 style="margin:0 0 14px 0; font-size:1.15rem; color:#fff; font-weight:700;">
+                    ➕ Insertar Unidad de Registro
+                </h3>
+
+                <form jettras:id="insertRecordForm" style="display:flex; flex-direction:column; gap:12px;">
+                    <div>
+                        <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:4px;">ID del Registro</label>
+                        <input jettras:id="newRecIdInput" type="text" style="width:100%; box-sizing:border-box; padding:9px 12px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:6px; color:#fff; font-size:0.9rem;" />
+                    </div>
+
+                    <div>
+                        <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:4px;">Datos / JSON Payload</label>
+                        <input jettras:id="newRecJsonInput" type="text" style="width:100%; box-sizing:border-box; padding:9px 12px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:6px; color:#38bdf8; font-family:monospace; font-size:0.9rem;" />
+                    </div>
+
+                    <button jettras:id="btnInsertRec" type="submit" style="width:100%; padding:11px; border-radius:8px; font-weight:700; cursor:pointer; background:#22c55e; color:#0f172a; border:none; margin-top:4px;">
+                        + Insertar Registro
+                    </button>
+                </form>
+            </div>
+
+            <!-- Edit Record Form (UPDATE) -->
+            <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:22px;">
+                <h3 style="margin:0 0 14px 0; font-size:1.15rem; color:#fff; font-weight:700;">
+                    ✏️ Editar / Actualizar Registro
+                </h3>
+
+                <form jettras:id="updateRecordForm" style="display:flex; flex-direction:column; gap:12px;">
+                    <div>
+                        <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:4px;">ID Registro a Modificar</label>
+                        <input jettras:id="editRecIdInput" type="text" style="width:100%; box-sizing:border-box; padding:9px 12px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:6px; color:#cbd5e1; font-size:0.9rem;" />
+                    </div>
+
+                    <div>
+                        <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:4px;">Nuevo Payload / JSON</label>
+                        <input jettras:id="editRecJsonInput" type="text" style="width:100%; box-sizing:border-box; padding:9px 12px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:6px; color:#00ff66; font-family:monospace; font-size:0.9rem;" />
+                    </div>
+
+                    <button jettras:id="btnUpdateRec" type="submit" style="width:100%; padding:11px; border-radius:8px; font-weight:700; cursor:pointer; background:#3b82f6; color:#fff; border:none; margin-top:4px;">
+                        ✏️ Actualizar Registro
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

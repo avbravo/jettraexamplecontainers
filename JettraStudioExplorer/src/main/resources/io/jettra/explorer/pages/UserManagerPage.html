@@ -1,0 +1,94 @@
+<div style="display:flex; flex-direction:column; gap:24px;">
+
+    <!-- TOP HEADER -->
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+        <div>
+            <h1 style="margin:0; font-size:1.8rem; font-weight:800; color:#fff;">
+                👥 Gestión de Usuarios &amp; Seguridad JettraStore
+            </h1>
+            <p style="margin:4px 0 0 0; color:#94a3b8; font-size:0.92rem;">
+                Administración de credenciales, roles globales y listas de control de acceso (ACL) por base de datos. Total: <strong jettras:id="totalUsersBadge" style="color:#22c55e;">2</strong>.
+            </p>
+        </div>
+    </div>
+
+    <div jettras:id="userFeedback"></div>
+
+    <div style="display:grid; grid-template-columns: 1.8fr 1.2fr; gap:24px; align-items:flex-start;">
+
+        <!-- Left: Users Table -->
+        <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:20px;">
+            <h3 style="margin:0 0 16px 0; font-size:1.15rem; color:#fff; font-weight:700;">
+                Cuentas Registradas en el Clúster
+            </h3>
+
+            <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.88rem;">
+                    <thead>
+                        <tr style="border-bottom:2px solid rgba(255,255,255,0.1); color:#94a3b8; font-size:0.75rem; text-transform:uppercase;">
+                            <th style="padding:10px;">Usuario</th>
+                            <th style="padding:10px;">Nombre Completo</th>
+                            <th style="padding:10px;">Rol Global</th>
+                            <th style="padding:10px;">Permisos BD</th>
+                            <th style="padding:10px; text-align:right;">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr jettras:id="userRows" style="border-bottom:1px solid rgba(255,255,255,0.06);">
+                            <td style="padding:12px 10px; font-weight:700; color:#38bdf8; font-family:monospace;">
+                                <span jettras:id="uName">admin</span>
+                            </td>
+                            <td style="padding:12px 10px; color:#cbd5e1;">
+                                <span jettras:id="uFullName">Superadministrador JettraStore</span>
+                            </td>
+                            <td style="padding:12px 10px;">
+                                <span jettras:id="uRole" style="padding:2px 8px; border-radius:4px; font-size:0.72rem; font-weight:800; background:rgba(234,179,8,0.2); color:#eab308;">ADMIN</span>
+                            </td>
+                            <td style="padding:12px 10px; color:#22c55e; font-size:0.8rem;">
+                                <span jettras:id="uPermsCount">4 bases de datos</span>
+                            </td>
+                            <td style="padding:12px 10px; text-align:right;">
+                                <a jettras:id="linkDeleteUser" href="#" onclick="return confirm('¿Revocar acceso y eliminar usuario?');" style="padding:4px 8px; border-radius:6px; font-size:0.75rem; background:rgba(239,68,68,0.2); color:#ef4444; border:1px solid rgba(239,68,68,0.3); text-decoration:none;">Revocar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Right: Create/Edit User Form -->
+        <div style="background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:22px;">
+            <h3 style="margin:0 0 16px 0; font-size:1.15rem; color:#fff; font-weight:700;">
+                ➕ Registrar / Actualizar Usuario
+            </h3>
+
+            <form jettras:id="userForm" style="display:flex; flex-direction:column; gap:12px;">
+                <div>
+                    <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:4px;">Nombre de Usuario</label>
+                    <input jettras:id="uNameInput" type="text" style="width:100%; box-sizing:border-box; padding:9px 12px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:6px; color:#fff; font-size:0.9rem;" />
+                </div>
+
+                <div>
+                    <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:4px;">Contraseña</label>
+                    <input jettras:id="uPassInput" type="password" style="width:100%; box-sizing:border-box; padding:9px 12px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:6px; color:#fff; font-size:0.9rem;" />
+                </div>
+
+                <div>
+                    <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:4px;">Nombre Completo o Cargo</label>
+                    <input jettras:id="uFullNameInput" type="text" style="width:100%; box-sizing:border-box; padding:9px 12px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:6px; color:#fff; font-size:0.9rem;" />
+                </div>
+
+                <div>
+                    <label style="display:block; font-size:0.8rem; font-weight:600; color:#94a3b8; margin-bottom:4px;">Rol Global (ADMIN, OPERATOR, AUDITOR)</label>
+                    <input jettras:id="uRoleInput" type="text" style="width:100%; box-sizing:border-box; padding:9px 12px; background:rgba(0,0,0,0.3); border:1px solid #334155; border-radius:6px; color:#38bdf8; font-weight:700; font-size:0.9rem;" />
+                </div>
+
+                <button jettras:id="btnSaveUser" type="submit" style="width:100%; padding:11px; border-radius:8px; font-weight:700; cursor:pointer; background:#22c55e; color:#0f172a; border:none; margin-top:6px;">
+                    + Guardar Usuario
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+</div>

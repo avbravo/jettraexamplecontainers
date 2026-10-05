@@ -64,6 +64,7 @@ public abstract class TemplatePage extends BasePage {
         // LEFT Sidebar Navigation Links
         add(Link.of("navDashboard", "/dashboard"));
         add(Link.of("navCatalog", "/catalog"));
+        add(Link.of("navCrud", "/crud"));
         add(Link.of("navComponents", "/components"));
         add(Link.of("navLogout", "/login?logout=true"));
 

@@ -17,6 +17,9 @@ import io.jettra.server.config.JettraConfig;
  * Modern Login Page in JettraStudio, inspired by JettraFlux authentication flow.
  * Supports credentials verification, error banners/modals, and session redirection.
  */
+import io.jettra.studio.security.NoLoginRequired;
+
+@NoLoginRequired
 public class LoginPage extends WebPage {
 
     private String username = "";
@@ -66,6 +69,7 @@ public class LoginPage extends WebPage {
         // Formulario de login
         Form<Void> form = new Form<>("loginForm");
         form.method("POST");
+        form.action("/login");
 
         TextField<String> userField = new TextField<>("username", Model.of(username));
         userField.placeholder("admin o demo");

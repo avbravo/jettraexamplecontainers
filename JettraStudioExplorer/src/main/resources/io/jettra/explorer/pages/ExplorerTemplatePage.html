@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JettraStore Explorer &amp; Police 3D</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; background: var(--jf-bg, #070b14); color: var(--jf-text, #f8fafc); font-family: system-ui, -apple-system, sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        .explorer-top {
+            display: flex; justify-content: space-between; align-items: center;
+            height: 64px; padding: 0 24px; background: var(--jf-surface, #0f172a);
+            border-bottom: 1px solid var(--jf-border, rgba(56, 189, 248, 0.15));
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        .explorer-body { display: flex; flex: 1; }
+
+        .explorer-sidebar {
+            width: 270px; background: var(--jf-surface, #0b1120);
+            border-right: 1px solid var(--jf-border, rgba(255, 255, 255, 0.08));
+            padding: 20px 14px; display: flex; flex-direction: column; gap: 14px;
+        }
+        .sidebar-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; color: var(--jf-accent, #38bdf8); }
+        .sidebar-cat { font-size: 0.70rem; text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; font-weight: 700; margin-top: 8px; padding: 0 8px; }
+        .sidebar-link {
+            display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px;
+            color: #cbd5e1; text-decoration: none; font-size: 0.88rem; font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .sidebar-link:hover { background: rgba(56, 189, 248, 0.12); color: #38bdf8; }
+
+        .explorer-center { flex: 1; padding: 26px; background: var(--jf-bg, #070b14); overflow-y: auto; }
+
+        .explorer-footer {
+            height: 48px; display: flex; align-items: center; justify-content: center;
+            background: var(--jf-surface, #0b1120); border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.8rem; color: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP COMPONENT -->
+    <header class="explorer-top">
+        <div style="display:flex; align-items:center; gap:16px;">
+            <span jettras:id="headerTitle" style="font-weight: 800; font-size: 1.15rem; color: #ffffff;">
+                JettraStore Explorer
+            </span>
+            <span jettras:id="clusterStatusBadge" style="background: rgba(34, 197, 94, 0.15); border: 1px solid #22c55e; color: #22c55e; padding: 4px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 700;">
+                ● CLÚSTER EN LÍNEA
+            </span>
+            <a href="/connections" style="text-decoration:none;">
+                <span jettras:id="activeServerBadge" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 4px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 700;">
+                    🔌 127.0.0.1:9010
+                </span>
+            </a>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:16px;">
+            <div>
+                <jettras:theme-selector/>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; border-left:1px solid rgba(255,255,255,0.1); padding-left:16px;">
+                <span style="background: #3b82f6; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85rem; color:#fff;">A</span>
+                <div style="display:flex; flex-direction:column;">
+                    <strong jettras:id="userNameBadge" style="font-size:0.8rem; color:#fff;">ClusterAdmin</strong>
+                    <span jettras:id="userRoleBadge" style="font-size:0.68rem; color:#38bdf8;">ADMIN</span>
+                </div>
+                <a jettras:id="navLogout" href="/login?logout=true" title="Desconectar" style="margin-left:8px; color:#ef4444; text-decoration:none; font-size:1.1rem;">🚪</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- BODY LAYOUT -->
+    <div class="explorer-body">
+        
+        <!-- LEFT SIDEBAR -->
+        <aside class="explorer-sidebar">
+            <div class="sidebar-logo">
+                <span>🛡️</span>
+                <span>JettraStore Police 3D</span>
+            </div>
+
+            <nav style="display:flex; flex-direction:column; gap:3px;">
+                <div class="sidebar-cat">JettraStorePolice 3D</div>
+                <a jettras:id="navPolice3D" href="/police3d" class="sidebar-link">
+                    <span>🌐</span>
+                    <span>Mundo 3D Cuántico</span>
+                </a>
+                <a jettras:id="navPolice" href="/police" class="sidebar-link">
+                    <span>🐾</span>
+                    <span>Centinelas &amp; Auditoría</span>
+                </a>
+                <a jettras:id="navCluster" href="/dashboard" class="sidebar-link">
+                    <span>📊</span>
+                    <span>Monitor Telemetría</span>
+                </a>
+
+                <div class="sidebar-cat">Consultas &amp; Conexiones</div>
+                <a jettras:id="navConnections" href="/connections" class="sidebar-link">
+                    <span>🔌</span>
+                    <span>Conexiones Servidor</span>
+                </a>
+                <a jettras:id="navQuery" href="/query" class="sidebar-link">
+                    <span>💻</span>
+                    <span>Consola JettraSQL/QL</span>
+                </a>
+
+                <div class="sidebar-cat">Almacenamiento Multi-Model</div>
+                <a jettras:id="navDatabases" href="/databases" class="sidebar-link">
+                    <span>🗄️</span>
+                    <span>Bases de Datos (CRUD)</span>
+                </a>
+                <a jettras:id="navEngines" href="/engines" class="sidebar-link">
+                    <span>⚙️</span>
+                    <span>Motores (Engines)</span>
+                </a>
+                <a jettras:id="navIndexes" href="/indexes" class="sidebar-link">
+                    <span>📑</span>
+                    <span>Índices B-Tree / Vector</span>
+                </a>
+                <a jettras:id="navRecords" href="/records" class="sidebar-link">
+                    <span>📋</span>
+                    <span>Registros &amp; Unidades</span>
+                </a>
+
+                <div class="sidebar-cat">Seguridad &amp; Mantenimiento</div>
+                <a jettras:id="navUsers" href="/users" class="sidebar-link">
+                    <span>👥</span>
+                    <span>Usuarios &amp; Permisos</span>
+                </a>
+                <a jettras:id="navBackup" href="/backup" class="sidebar-link">
+                    <span>💾</span>
+                    <span>Backup &amp; Restore</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- CENTER COMPONENT -->
+        <main class="explorer-center">
+            <jettras:child/>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="explorer-footer">
+        <span jettras:id="footerInfo">JettraStore Explorer &amp; Police 3D | Virtual Threads Java 25 | JettraStoreDriver</span>
+    </footer>
+
+</body>
+</html>

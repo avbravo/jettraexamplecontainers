@@ -20,6 +20,9 @@ import java.time.format.DateTimeFormatter;
  * Main Dashboard page for JettraStudioExample.
  * Inherits the master layout and theme support from BasePage.
  */
+import io.jettra.studio.security.NoLoginRequired;
+
+@NoLoginRequired
 public class HomePage extends BasePage {
 
     public HomePage() {
