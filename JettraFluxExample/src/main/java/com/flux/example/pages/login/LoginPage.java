@@ -1,4 +1,4 @@
-package com.flux.example.pages.login;
+    package com.flux.example.pages.login;
 
 import io.jettra.flux.pages.FluxBaseHandler;
 import io.jettra.flux.widgets.Paragraph;

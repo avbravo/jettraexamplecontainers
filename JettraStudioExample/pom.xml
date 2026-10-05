@@ -19,6 +19,12 @@
     </properties>
 
     <dependencies>
+        <!-- Servidor y Configuración JettraEE -->
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraEE</artifactId>
+            <version>${jettra.frameworks.version}</version>
+        </dependency>
         <!-- Framework JettraStudio -->
         <dependency>
             <groupId>io.jettra</groupId>

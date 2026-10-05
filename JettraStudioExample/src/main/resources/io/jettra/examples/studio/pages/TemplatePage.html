@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JettraStudio Pro Dashboard</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 0; background: var(--jf-bg, #090d16); color: var(--jf-text, #f8fafc); font-family: system-ui, -apple-system, sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        /* TOP BAR */
+        .dashboard-top {
+            display: flex; justify-content: space-between; align-items: center;
+            height: 64px; padding: 0 24px;
+            background: var(--jf-surface, #111827);
+            border-bottom: 1px solid var(--jf-border, rgba(255,255,255,0.08));
+            position: sticky; top: 0; z-index: 100;
+        }
+        .top-left-section { display: flex; align-items: center; gap: 16px; }
+        .top-right-section { display: flex; align-items: center; gap: 16px; }
+
+        /* MAIN BODY: LEFT + CENTER */
+        .dashboard-body-layout { display: flex; flex: 1; }
+
+        /* LEFT SIDEBAR */
+        .dashboard-left {
+            width: 250px; background: var(--jf-surface, #111827);
+            border-right: 1px solid var(--jf-border, rgba(255,255,255,0.08));
+            padding: 24px 16px; display: flex; flex-direction: column; gap: 20px;
+        }
+        .sidebar-logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.15rem; color: var(--jf-accent, #38bdf8); }
+        .sidebar-category { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--jf-text-secondary, #64748b); font-weight: 700; margin-top: 12px; padding: 0 8px; }
+        .sidebar-link {
+            display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px;
+            color: var(--jf-text, #e2e8f0); text-decoration: none; font-size: 0.9rem; font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .sidebar-link:hover { background: rgba(56, 189, 248, 0.12); color: var(--jf-accent, #38bdf8); }
+
+        /* CENTER CONTENT */
+        .dashboard-center { flex: 1; padding: 28px; background: var(--jf-bg, #090d16); overflow-y: auto; }
+
+        /* FOOTER */
+        .dashboard-footer {
+            height: 50px; display: flex; align-items: center; justify-content: center;
+            background: var(--jf-surface, #111827);
+            border-top: 1px solid var(--jf-border, rgba(255,255,255,0.08));
+            font-size: 0.85rem; color: var(--jf-text-secondary, #64748b);
+        }
+
+        .avatar-circle {
+            width: 34px; height: 34px; border-radius: 50%; background: #3b82f6;
+            color: #ffffff; display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== 1. TOP COMPONENT ==================== -->
+    <header class="dashboard-top">
+        <div class="top-left-section">
+            <span style="font-size: 1.3rem; cursor: pointer;">☰</span>
+            <span jettras:id="topTitle" style="font-weight: 800; font-size: 1.15rem; color: var(--jf-text, #ffffff);">
+                JettraStudio Dashboard
+            </span>
+        </div>
+
+        <div class="top-right-section">
+            <!-- Iconos de Notificación -->
+            <div style="display:flex; gap:12px; align-items:center; font-size:1.1rem; color:var(--jf-text-secondary, #94a3b8);">
+                <span title="Notificaciones Globales" style="cursor:pointer;">🌐</span>
+                <span title="Mensajes Personales" style="cursor:pointer;">✉️</span>
+                <span title="Canal del Servidor" style="cursor:pointer;">📢</span>
+            </div>
+
+            <!-- Selector de Idioma -->
+            <div style="display:flex; gap:8px; align-items:center;">
+                <a jettras:id="langEs" href="?change_lang=es" title="Español" style="text-decoration:none; font-size:1.2rem;">🇪🇸</a>
+                <a jettras:id="langEn" href="?change_lang=en" title="English" style="text-decoration:none; font-size:1.2rem;">🇺🇸</a>
+            </div>
+
+            <!-- Selector de Tema Autoinyectado -->
+            <div>
+                <jettras:theme-selector/>
+            </div>
+
+            <!-- Perfil de Usuario -->
+            <div style="display:flex; align-items:center; gap:10px; padding-left:12px; border-left:1px solid var(--jf-border, rgba(255,255,255,0.1));">
+                <div class="avatar-circle">
+                    <span jettras:id="userAvatarInitial">A</span>
+                </div>
+                <div style="display:flex; flex-direction:column;">
+                    <strong jettras:id="userDisplayName" style="font-size:0.85rem; color:var(--jf-text, #ffffff);">Admin</strong>
+                    <span jettras:id="userRoleBadge" style="font-size:0.7rem; color:var(--jf-accent, #38bdf8);">ADMIN</span>
+                </div>
+                <a jettras:id="navLogout" href="/login?logout=true" title="Cerrar Sesión" style="margin-left:8px; color:#ef4444; text-decoration:none; font-size:1.1rem;">
+                    🚪
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN BODY: LEFT + CENTER ==================== -->
+    <div class="dashboard-body-layout">
+        
+        <!-- ==================== 2. LEFT COMPONENT ==================== -->
+        <aside class="dashboard-left">
+            <div class="sidebar-logo">
+                <span>🎨</span>
+                <span>JettraStudio Pro</span>
+            </div>
+
+            <nav style="display: flex; flex-direction: column; gap: 4px;">
+                <div class="sidebar-category">Navegación</div>
+                <a jettras:id="navDashboard" href="/dashboard" class="sidebar-link">
+                    <span>📊</span>
+                    <span>Dashboard</span>
+                </a>
+
+                <div class="sidebar-category">Comercio & Datos</div>
+                <a jettras:id="navCatalog" href="/catalog" class="sidebar-link">
+                    <span>📦</span>
+                    <span>Catálogo / Inventario</span>
+                </a>
+
+                <div class="sidebar-category">Componentes</div>
+                <a jettras:id="navComponents" href="/components" class="sidebar-link">
+                    <span>🧩</span>
+                    <span>UI Showcase</span>
+                </a>
+
+                <div class="sidebar-category">Cuenta</div>
+                <a href="/login?logout=true" class="sidebar-link" style="color: #ef4444;">
+                    <span>🔒</span>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- ==================== 3. CENTER COMPONENT ==================== -->
+        <main class="dashboard-center">
+            <jettras:child/>
+        </main>
+    </div>
+
+    <!-- ==================== 4. FOOTER COMPONENT ==================== -->
+    <footer class="dashboard-footer">
+        <span jettras:id="footerText">© 2026 JettraStack - JettraStudio</span>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<div class="dashboard-center-wrapper" style="display: flex; flex-direction: column; gap: 24px;">
+
+    <!-- Banner de Notificación -->
+    <div jettras:id="dashboardAlert"></div>
+
+    <!-- 1. Cuadrícula de StatCards (4 Métricas principales) -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+        
+        <!-- StatCard 1 -->
+        <div style="background: var(--jf-surface, #1e293b); border: 1px solid var(--jf-border, rgba(255,255,255,0.08)); border-radius: 12px; padding: 20px;">
+            <div style="font-size: 0.85rem; color: var(--jf-text-secondary, #94a3b8); font-weight: 600; text-transform: uppercase;">
+                <span jettras:id="statConversionTitle">Conversión</span>
+            </div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--jf-text, #ffffff); margin: 8px 0;">
+                <span jettras:id="statConversionValue">0.80%</span>
+            </div>
+            <div style="font-size: 0.85rem; color: #22c55e; font-weight: 600;">
+                <span jettras:id="statConversionChange">+0.81%</span> vs mes anterior
+            </div>
+        </div>
+
+        <!-- StatCard 2 -->
+        <div style="background: var(--jf-surface, #1e293b); border: 1px solid var(--jf-border, rgba(255,255,255,0.08)); border-radius: 12px; padding: 20px;">
+            <div style="font-size: 0.85rem; color: var(--jf-text-secondary, #94a3b8); font-weight: 600; text-transform: uppercase;">
+                <span jettras:id="statAvgOrderTitle">Valor Promedio</span>
+            </div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--jf-accent, #38bdf8); margin: 8px 0;">
+                <span jettras:id="statAvgOrderValue">$306.20</span>
+            </div>
+            <div style="font-size: 0.85rem; color: #22c55e; font-weight: 600;">
+                <span jettras:id="statAvgOrderChange">+4.20%</span> vs mes anterior
+            </div>
+        </div>
+
+        <!-- StatCard 3 -->
+        <div style="background: var(--jf-surface, #1e293b); border: 1px solid var(--jf-border, rgba(255,255,255,0.08)); border-radius: 12px; padding: 20px;">
+            <div style="font-size: 0.85rem; color: var(--jf-text-secondary, #94a3b8); font-weight: 600; text-transform: uppercase;">
+                <span jettras:id="statQuantityTitle">Cantidad Pedidos</span>
+            </div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--jf-text, #ffffff); margin: 8px 0;">
+                <span jettras:id="statQuantityValue">1,620</span>
+            </div>
+            <div style="font-size: 0.85rem; color: #ef4444; font-weight: 600;">
+                <span jettras:id="statQuantityChange">-2.10%</span> vs semana anterior
+            </div>
+        </div>
+
+        <!-- StatCard 4 -->
+        <div style="background: var(--jf-surface, #1e293b); border: 1px solid var(--jf-border, rgba(255,255,255,0.08)); border-radius: 12px; padding: 20px;">
+            <div style="font-size: 0.85rem; color: var(--jf-text-secondary, #94a3b8); font-weight: 600; text-transform: uppercase;">
+                <span jettras:id="statThreadsTitle">Hilos Loom</span>
+            </div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: #a855f7; margin: 8px 0;">
+                <span jettras:id="statThreadsValue">250,000 req/s</span>
+            </div>
+            <div style="font-size: 0.85rem; color: #22c55e; font-weight: 600;">
+                Disponibilidad <span jettras:id="statThreadsChange">99.98%</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 2. Main Row: Gráfico de Crecimiento + Historial de Transacciones -->
+    <div style="display: grid; grid-template-columns: 3fr 2fr; gap: 24px;">
+        
+        <!-- Visitor Graph Card -->
+        <div jettras:id="visitorCard" style="background: var(--jf-surface, #1e293b); border: 1px solid var(--jf-border, rgba(255,255,255,0.08)); border-radius: 12px; padding: 24px;">
+            <div style="display: flex; gap: 32px; margin-bottom: 24px;">
+                <div>
+                    <span style="font-size: 0.8rem; color: var(--jf-text-secondary, #94a3b8); font-weight: 600;">MRR TOTAL</span>
+                    <div jettras:id="mrrTotal" style="font-size: 1.6rem; font-weight: 800; color: var(--jf-accent, #38bdf8);">$620,076.00</div>
+                </div>
+                <div>
+                    <span style="font-size: 0.8rem; color: var(--jf-text-secondary, #94a3b8); font-weight: 600;">PROMEDIO / CLIENTE</span>
+                    <div jettras:id="mrrAverage" style="font-size: 1.6rem; font-weight: 800; color: #22c55e;">$1,120.00</div>
+                </div>
+            </div>
+
+            <!-- Gráfico de barras visual -->
+            <div style="display: flex; align-items: flex-end; gap: 14px; height: 160px; padding-top: 16px; border-bottom: 1px solid var(--jf-border, rgba(255,255,255,0.1));">
+                <div style="flex:1; background:rgba(56,189,248,0.3); height:40%; border-radius:4px 4px 0 0;" title="Ene: 40%"></div>
+                <div style="flex:1; background:rgba(56,189,248,0.5); height:60%; border-radius:4px 4px 0 0;" title="Feb: 60%"></div>
+                <div style="flex:1; background:rgba(56,189,248,0.4); height:50%; border-radius:4px 4px 0 0;" title="Mar: 50%"></div>
+                <div style="flex:1; background:rgba(56,189,248,0.7); height:80%; border-radius:4px 4px 0 0;" title="Abr: 80%"></div>
+                <div style="flex:1; background:rgba(56,189,248,0.3); height:30%; border-radius:4px 4px 0 0;" title="May: 30%"></div>
+                <div style="flex:1; background:rgba(56,189,248,0.6); height:75%; border-radius:4px 4px 0 0;" title="Jun: 75%"></div>
+                <div style="flex:1; background:rgba(56,189,248,0.65); height:65%; border-radius:4px 4px 0 0;" title="Jul: 65%"></div>
+                <div style="flex:1; background:var(--jf-accent, #38bdf8); height:95%; border-radius:4px 4px 0 0;" title="Ago: 95%"></div>
+                <div style="flex:1; background:rgba(56,189,248,0.55); height:55%; border-radius:4px 4px 0 0;" title="Sep: 55%"></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.75rem; color:var(--jf-text-secondary, #94a3b8); margin-top:8px;">
+                <span>Ene</span><span>Feb</span><span>Mar</span><span>Abr</span><span>May</span><span>Jun</span><span>Jul</span><span>Ago</span><span>Sep</span>
+            </div>
+        </div>
+
+        <!-- Transaction History Card -->
+        <div jettras:id="transactionCard" style="background: var(--jf-surface, #1e293b); border: 1px solid var(--jf-border, rgba(255,255,255,0.08)); border-radius: 12px; padding: 24px;">
+            <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 8px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05);">
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <span style="color:#3b82f6;">✓</span>
+                        <div>
+                            <div style="font-size:0.88rem; font-weight:600; color:var(--jf-text, #ffffff);">Pago #28492</div>
+                            <div style="font-size:0.75rem; color:var(--jf-text-secondary, #94a3b8);">Junio 13, 11:09 AM</div>
+                        </div>
+                    </div>
+                    <strong style="color:#22c55e;">+$250.00</strong>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05);">
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <span style="color:#ef4444;">↩</span>
+                        <div>
+                            <div style="font-size:0.88rem; font-weight:600; color:var(--jf-text, #ffffff);">Reembolso #94830</div>
+                            <div style="font-size:0.75rem; color:var(--jf-text-secondary, #94a3b8);">Junio 13, 08:22 AM</div>
+                        </div>
+                    </div>
+                    <strong style="color:#ef4444;">-$570.00</strong>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.05);">
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <span style="color:#22c55e;">+</span>
+                        <div>
+                            <div style="font-size:0.88rem; font-weight:600; color:var(--jf-text, #ffffff);">Suscripción 8 Usuarios #5849</div>
+                            <div style="font-size:0.75rem; color:var(--jf-text-secondary, #94a3b8);">Junio 12, 02:56 PM</div>
+                        </div>
+                    </div>
+                    <strong style="color:#22c55e;">+$50.00</strong>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div style="display:flex; gap:10px; align-items:center;">
+                        <span style="color:#3b82f6;">✓</span>
+                        <div>
+                            <div style="font-size:0.88rem; font-weight:600; color:var(--jf-text, #ffffff);">Pago Enterprise #3382</div>
+                            <div style="font-size:0.75rem; color:var(--jf-text-secondary, #94a3b8);">Junio 11, 06:11 AM</div>
+                        </div>
+                    </div>
+                    <strong style="color:#22c55e;">+$3,830.00</strong>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 3. Acciones Rápidas -->
+    <div style="display:flex; gap:12px; align-items:center; margin-top:8px;">
+        <a href="/catalog" style="text-decoration:none;">
+            <button jettras:id="btnQuickNewOrder">+ Nueva Orden</button>
+        </a>
+        <a href="/catalog" style="text-decoration:none;">
+            <button jettras:id="btnQuickCatalog">Ir al Inventario</button>
+        </a>
+    </div>
+
+</div>
