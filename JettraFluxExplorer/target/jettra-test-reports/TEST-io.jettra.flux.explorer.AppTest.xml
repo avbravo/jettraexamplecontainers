@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.jettra.flux.explorer.AppTest" time="0.205" tests="5" errors="0" skipped="0" failures="0">
+  <testcase name="JettraTestSuite" classname="io.jettra.flux.explorer.AppTest" time="0.205"/>
+</testsuite>

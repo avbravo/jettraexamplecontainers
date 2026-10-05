@@ -87,23 +87,7 @@
             <version>${jettra.flux.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>io.jettra.theme</groupId>
-            <artifactId>metropolis</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>io.jettra.theme</groupId>
-            <artifactId>bit</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>io.jettra.theme</groupId>
-            <artifactId>tail</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+
         <!--    
         <dependency>
             <groupId>io.jettra.theme</groupId>

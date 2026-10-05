@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.jettra</groupId>
+    <artifactId>JettraFluxDesigner</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>JettraFluxDesigner</name>
+    <description>JettraFlux Designer - Visual drag-and-drop IDE and Maven Project Dependency Manager inspired by JettraStorePolice3D</description>
+
+    <properties>
+        <maven.compiler.release>25</maven.compiler.release>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <main.class.path>io.jettra.flux.designer.App</main.class.path>
+        <jettra.frameworks.version>1.0.0-SNAPSHOT</jettra.frameworks.version>
+        <jackson.version>2.18.2</jackson.version>
+        <skipTests>true</skipTests>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraEE</artifactId>
+            <version>${jettra.frameworks.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraFlux</artifactId>
+            <version>${jettra.frameworks.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraAnnotation</artifactId>
+            <version>${jettra.frameworks.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraCDI</artifactId>
+            <version>${jettra.frameworks.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraRest</artifactId>
+            <version>${jettra.frameworks.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraJSON</artifactId>
+            <version>${jettra.frameworks.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraTest</artifactId>
+            <version>${jettra.frameworks.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>25</release>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>io.jettra</groupId>
+                            <artifactId>JettraAnnotation</artifactId>
+                            <version>${jettra.frameworks.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>jettra-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>io.jettra.test.runner.JettraTestRunner</mainClass>
+                            <classpathScope>test</classpathScope>
+                            <arguments>
+                                <argument>${project.build.testOutputDirectory}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

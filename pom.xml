@@ -25,6 +25,8 @@
     <module>JettraStoreExample</module>
     <module>JettraStudioExample</module>
     <module>JettraStudioExplorer</module>
+    <module>JettraFluxExplorer</module>
+    <module>JettraFluxDesigner</module>
     <module>JettraWebBackEnd</module>
     <module>JettraWebExample</module>
   </modules>

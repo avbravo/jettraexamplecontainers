@@ -1,12 +1,14 @@
-    package com.flux.example.pages.login;
+package com.flux.example.pages.login;
 
 import io.jettra.flux.pages.FluxBaseHandler;
 import io.jettra.flux.widgets.Paragraph;
 import io.jettra.flux.widgets.Scaffold;
-import io.jettra.flux.widgets.Login;
 import io.jettra.flux.widgets.Column;
-import io.jettra.flux.widgets.Notification;
+import io.jettra.flux.widgets.Row;
+import io.jettra.flux.widgets.Card;
 import io.jettra.flux.widgets.Center;
+import io.jettra.flux.widgets.Header;
+import io.jettra.flux.widgets.ElevatedButton;
 import com.sun.net.httpserver.HttpExchange;
 import io.jettra.core.server.Page;
 import io.jettra.flux.core.Widget;
@@ -23,7 +25,7 @@ public class LoginPage extends FluxBaseHandler {
 
     @Override
     protected String getTitle() {
-        return "Login - JettraFlux";
+        return "Iniciar Sesión • JettraFlux Enterprise Suite";
     }
 
     @Override
@@ -34,10 +36,9 @@ public class LoginPage extends FluxBaseHandler {
             redirect(exchange, "/login?error=empty_fields");
             return true;
         }
-        if (isValidUser(user, pass)) {
-            String role = user.equals("demo")?"DEMO":"ADMIN";
-//            CredentialFlux credentialFlux = new CredentialFlux(user, user + "Prueba", "ADMIN", "", "");
-            CredentialFlux credentialFlux = new CredentialFlux(user, user + "Prueba", role, "", "");
+        if (isValidUser(user.trim(), pass.trim())) {
+            String role = "demo".equalsIgnoreCase(user) ? "DEMO" : "ADMIN";
+            CredentialFlux credentialFlux = new CredentialFlux(user, user + " Administrator", role, "Engineering", "");
             io.jettra.server.core.JettraContext.getCurrent().set(io.jettra.server.core.JettraContext.Scope.SESSION, "credentialFlux", credentialFlux);
             setSessionCookie(exchange, user, credentialFlux.role(), credentialFlux.department());
             redirect(exchange, "/dashboard");
@@ -60,51 +61,77 @@ public class LoginPage extends FluxBaseHandler {
 
     @Override
     protected Widget buildUI(HttpExchange exchange, Map<String, String> params, String currentTheme) {
-        Widget loginForm = Login.create().action(JettraServer.resolvePath("/login")).title("JettraFlux Admin").logo("https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg").forgotPasswordUrl(JettraServer.resolvePath("/forgot-password"));
-        
-        Widget body = Center.of(
-            Column.of(
-                loginForm
-            )
-        );
-
+        String errorMsg = null;
         if (params.containsKey("error")) {
-            String errorParam = params.get("error");
-            String titleStr = "Advertencia de Autenticación";
-            String msgStr = "El nombre de usuario o la contraseña ingresados no son válidos. Por favor verifique sus credenciales.";
-            
-            if ("empty_fields".equals(errorParam) || "empty".equals(errorParam)) {
-                titleStr = "Campos Requeridos";
-                msgStr = "Error: Username y password son requeridos.";
+            String err = params.get("error");
+            if ("empty_fields".equals(err)) {
+                errorMsg = "Por favor ingrese su usuario y contraseña para continuar.";
+            } else {
+                errorMsg = "Credenciales incorrectas. Verifique el usuario o use los accesos rápidos abajo.";
             }
-
-            Widget notificationBanner = Notification.of(
-                Paragraph.of(msgStr).modifier(new io.jettra.flux.core.Modifier().style("margin: 0; color: #b91c1c; font-weight: 600;"))
-            ).modifier(new io.jettra.flux.core.Modifier().style("margin-bottom: 15px; padding: 12px 16px; background-color: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; width: 100%; max-width: 400px; box-sizing: border-box;"));
-
-            Widget errorDialog = io.jettra.flux.widgets.Modal.of(
-                Column.of(
-                    io.jettra.flux.widgets.Header.of(4, titleStr)
-                            .modifier(new io.jettra.flux.core.Modifier().style("color: #b91c1c; margin-top: 0; margin-bottom: 10px; font-weight: 600;")),
-                    Paragraph.of(msgStr)
-                            .modifier(new io.jettra.flux.core.Modifier().style("margin-bottom: 20px; color: #374151; font-size: 14px;")),
-                    io.jettra.flux.widgets.ElevatedButton.of("Aceptar")
-                            .attribute("type", "button")
-                            .attribute("onclick", "this.closest('.espresso-modal-overlay').style.display='none'; return false;")
-                            .modifier(new io.jettra.flux.core.Modifier().style("background-color: #ef4444; color: white; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; align-self: flex-end;"))
-                ).modifier(new io.jettra.flux.core.Modifier().style("width: 100%; max-width: 400px; gap: 10px;"))
-            ).open(true);
-
-            body = Center.of(
-                Column.of(
-                    notificationBanner,
-                    errorDialog,
-                    loginForm
-                )
-            );
         }
 
-        return Scaffold.of().body(body);
+        String customCss = 
+            "<style>" +
+            "  * { box-sizing: border-box; }" +
+            "  body { margin: 0; background: radial-gradient(circle at 50% 20%, #0f172a 0%, #030712 100%); font-family: system-ui, -apple-system, sans-serif; color: #f8fafc; min-height: 100vh; display: flex; align-items: center; justify-content: center; }" +
+            "  .pro-login-card { width: 100%; max-width: 440px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 16px; padding: 36px; box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 30px rgba(56, 189, 248, 0.1); }" +
+            "  .pro-input { width: 100%; padding: 12px 14px; background: rgba(3, 7, 18, 0.7); border: 1px solid #334155; border-radius: 8px; color: #fff; font-size: 0.95rem; margin-top: 6px; transition: border-color 0.2s; }" +
+            "  .pro-input:focus { outline: none; border-color: #38bdf8; box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2); }" +
+            "  .pro-btn { width: 100%; padding: 13px; background: linear-gradient(135deg, #0284c7, #2563eb); color: white; border: none; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; margin-top: 10px; }" +
+            "  .pro-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4); }" +
+            "  .pro-demo-chip { padding: 6px 12px; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 6px; color: #38bdf8; font-size: 0.78rem; font-weight: 600; cursor: pointer; text-decoration: none; }" +
+            "  .pro-demo-chip:hover { background: rgba(56, 189, 248, 0.2); }" +
+            "</style>";
+
+        StringBuilder html = new StringBuilder();
+        html.append(customCss);
+        html.append("<div class='pro-login-card'>");
+        
+        // Brand Header
+        html.append("<div style='text-align: center; margin-bottom: 28px;'>")
+            .append("  <div style='display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 12px; background: linear-gradient(135deg, #38bdf8, #2563eb); margin-bottom: 12px; box-shadow: 0 8px 16px rgba(56, 189, 248, 0.3);'>")
+            .append("    <span style='font-size: 1.8rem;'>⚡</span>")
+            .append("  </div>")
+            .append("  <h2 style='margin: 0; font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -0.02em;'>JettraFlux Pro</h2>")
+            .append("  <p style='margin: 6px 0 0 0; color: #94a3b8; font-size: 0.85rem;'>Plataforma Reactiva de Alto Rendimiento</p>")
+            .append("</div>");
+
+        // Error notification if present
+        if (errorMsg != null) {
+            html.append("<div style='background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; color: #fca5a5; padding: 10px 14px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;'>")
+                .append("  <span>⚠️</span> <span>").append(errorMsg).append("</span>")
+                .append("</div>");
+        }
+
+        // Form
+        html.append("<form method='POST' action='").append(JettraServer.resolvePath("/login")).append("' style='display: flex; flex-direction: column; gap: 16px;'>")
+            .append("  <div>")
+            .append("    <label style='font-size: 0.82rem; font-weight: 600; color: #cbd5e1;'>Usuario o Email</label>")
+            .append("    <input id='usernameField' type='text' name='username' required class='pro-input' placeholder='admin o demo' />")
+            .append("  </div>")
+            .append("  <div>")
+            .append("    <div style='display: flex; justify-content: space-between;'>")
+            .append("      <label style='font-size: 0.82rem; font-weight: 600; color: #cbd5e1;'>Contraseña</label>")
+            .append("      <a href='").append(JettraServer.resolvePath("/forgot-password")).append("' style='color: #38bdf8; font-size: 0.78rem; text-decoration: none;'>¿Olvidaste tu clave?</a>")
+            .append("    </div>")
+            .append("    <input id='passwordField' type='password' name='password' required class='pro-input' placeholder='••••••••' />")
+            .append("  </div>")
+            .append("  <button type='submit' class='pro-btn'>Iniciar Sesión ➔</button>")
+            .append("</form>");
+
+        // Fast Quick Demo logins
+        html.append("<div style='margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;'>")
+            .append("  <span style='font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; display: block; margin-bottom: 10px;'>Accesos Rápidos de Prueba</span>")
+            .append("  <div style='display: flex; gap: 8px; justify-content: center;'>")
+            .append("    <button type='button' class='pro-demo-chip' onclick=\"document.getElementById('usernameField').value='admin'; document.getElementById('passwordField').value='admin';\">👤 Admin / admin</button>")
+            .append("    <button type='button' class='pro-demo-chip' onclick=\"document.getElementById('usernameField').value='demo'; document.getElementById('passwordField').value='demo';\">⚡ Demo / demo</button>")
+            .append("  </div>")
+            .append("</div>");
+
+        html.append("</div>");
+
+        return Scaffold.of().body(Paragraph.of(html.toString()));
     }
 
     private boolean isValidUser(String user, String pass) {
