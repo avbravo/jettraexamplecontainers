@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.jettra.examples</groupId>
+    <artifactId>JettraStudioExample</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>JettraStudioExample</name>
+    <description>Demostración completa e interactiva de todos los componentes y características de JettraStudio</description>
+
+    <properties>
+        <maven.compiler.release>25</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jettra.frameworks.version>1.0.0-SNAPSHOT</jettra.frameworks.version>
+        <main.class>io.jettra.examples.studio.JettraStudioExampleApp</main.class>
+    </properties>
+
+    <dependencies>
+        <!-- Framework JettraStudio -->
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraStudio</artifactId>
+            <version>${jettra.frameworks.version}</version>
+        </dependency>
+
+        <!-- Temas y Estilos JettraFlux -->
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraFlux</artifactId>
+            <version>${jettra.frameworks.version}</version>
+        </dependency>
+
+        <!-- Utilidades JSON -->
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraJSON</artifactId>
+            <version>${jettra.frameworks.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Framework de Pruebas JettraTest -->
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraTest</artifactId>
+            <version>${jettra.frameworks.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>25</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>jettra-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>io.jettra.test.runner.JettraTestRunner</mainClass>
+                            <classpathScope>test</classpathScope>
+                            <arguments>
+                                <argument>${project.build.testOutputDirectory}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

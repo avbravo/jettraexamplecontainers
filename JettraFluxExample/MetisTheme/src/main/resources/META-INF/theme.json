@@ -1,0 +1,15 @@
+{
+  "name": "MetisTheme",
+  "primary": "#ef4444",
+  "secondary": "#dc2626",
+  "background": "#0f172a",
+  "surface": "rgba(30, 41, 59, 0.7)",
+  "onPrimary": "#ffffff",
+  "onSurface": "#f8fafc",
+  "buttonStyle": "border: none; border-radius: 8px; padding: 12px 24px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; background: #ef4444; color: #ffffff;",
+  "cardStyle": "border-radius: 16px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); padding: 24px; background-color: rgba(30, 41, 59, 0.7); color: #f8fafc;",
+  "containerStyle": "padding: 24px; border-radius: 12px; background: transparent;",
+  "textStyle": "font-family: 'Inter', sans-serif; font-size: 15px; color: #f8fafc; line-height: 1.6;",
+  "customCss": "/* From https://preview.colorlib.com/theme/metis/forms.html/./assets/main-B_SdTNi1.css */ Not Found ",
+  "customJs": "var s = document.createElement('script'); s.src = 'https://preview.colorlib.com/theme/metis/forms.html/./assets/rolldown-runtime-hePW80VL.js'; s.crossOrigin = 'anonymous'; document.head.appendChild(s); var s = document.createElement('script'); s.src = 'https://preview.colorlib.com/theme/metis/forms.html/./assets/vendor-bootstrap-DD3aP6Bu.js'; s.crossOrigin = 'anonymous'; document.head.appendChild(s); var s = document.createElement('script'); s.src = 'https://preview.colorlib.com/theme/metis/forms.html/./assets/vendor-charts-C03qY4Jp.js'; s.crossOrigin = 'anonymous'; document.head.appendChild(s); var s = document.createElement('script'); s.src = 'https://preview.colorlib.com/theme/metis/forms.html/./assets/vendor-ui-Bi_5BC28.js'; s.crossOrigin = 'anonymous'; document.head.appendChild(s); var s = document.createElement('script'); s.src = 'https://preview.colorlib.com/theme/metis/forms.html/./assets/main-McC4ohgZ.js'; s.crossOrigin = 'anonymous'; document.head.appendChild(s); var s = document.createElement('script'); s.src = 'https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496'; s.crossOrigin = 'anonymous'; document.head.appendChild(s); console.log('Scraped Theme scripts injected!');"
+}

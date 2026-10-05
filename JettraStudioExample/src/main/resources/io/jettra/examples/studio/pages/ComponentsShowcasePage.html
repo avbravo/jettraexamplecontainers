@@ -1,0 +1,141 @@
+<div class="showcase-container" style="max-width:1200px; margin:0 auto; display:flex; flex-direction:column; gap:32px;">
+
+    <!-- Navegación -->
+    <nav style="display:flex; justify-content:space-between; align-items:center; background:var(--jf-surface, #1e293b); padding:12px 20px; border-radius:10px; border:1px solid var(--jf-border, rgba(255,255,255,0.08));">
+        <div style="font-weight:700; color:var(--jf-accent, #38bdf8); font-size:1.1rem;">
+            🎨 JettraStudio Components
+        </div>
+        <div style="display:flex; gap:16px; align-items:center;">
+            <a jettras:id="linkHome" href="/" style="color:var(--jf-text, #f8fafc); text-decoration:none; font-weight:500;">Inicio</a>
+            <a href="/components" style="color:var(--jf-accent, #38bdf8); text-decoration:none; font-weight:600;">Componentes</a>
+            <a jettras:id="linkCatalog" href="/catalog" style="color:var(--jf-text, #f8fafc); text-decoration:none; font-weight:500;">Catálogo / Inventario</a>
+        </div>
+    </nav>
+
+    <!-- Título Principal -->
+    <div style="border-bottom:1px solid var(--jf-border, rgba(255,255,255,0.1)); padding-bottom:16px;">
+        <h1 jettras:id="showcaseTitle" style="font-size:2.2rem; font-weight:800; margin:0 0 8px 0; color:var(--jf-text, #ffffff);">
+            Catálogo de Componentes
+        </h1>
+        <p style="color:var(--jf-text-secondary, #94a3b8); margin:0;">
+            Suite completa de controles visuales, modelos reactivos y componentes de interfaz.
+        </p>
+    </div>
+
+    <!-- SECCIÓN 1: Tipografía y Etiquetas -->
+    <section style="background:var(--jf-surface, #1e293b); border:1px solid var(--jf-border, rgba(255,255,255,0.08)); border-radius:12px; padding:24px;">
+        <h2 style="font-size:1.3rem; margin-top:0; color:var(--jf-accent, #38bdf8);">1. Tipografía y Labels</h2>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+            <p jettras:id="simpleLabel" style="font-size:1.05rem; color:var(--jf-text, #e2e8f0);"></p>
+            <div jettras:id="multilineLabel" style="background:rgba(0,0,0,0.25); padding:16px; border-radius:8px; border-left:4px solid var(--jf-accent, #38bdf8); color:var(--jf-text-secondary, #94a3b8); font-family:monospace;"></div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 2: Variantes de Botones -->
+    <section style="background:var(--jf-surface, #1e293b); border:1px solid var(--jf-border, rgba(255,255,255,0.08)); border-radius:12px; padding:24px;">
+        <h2 style="font-size:1.3rem; margin-top:0; color:var(--jf-accent, #38bdf8);">2. Botones y Variantes Estéticas</h2>
+        <p style="color:var(--jf-text-secondary, #94a3b8); margin-bottom:16px;">
+            Botones con soporte de acciones `onClick()` y estilos integrados de JettraFlux.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+            <button jettras:id="btnGold">Gold</button>
+            <button jettras:id="btnBlue">Blue</button>
+            <button jettras:id="btnLime">Lime</button>
+            <button jettras:id="btnRed">Red</button>
+            <button jettras:id="btnPurple">Purple</button>
+            <button jettras:id="btnDark">Dark</button>
+            <button jettras:id="btnPrimary">Primary</button>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 3: Alertas Contextuales -->
+    <section style="background:var(--jf-surface, #1e293b); border:1px solid var(--jf-border, rgba(255,255,255,0.08)); border-radius:12px; padding:24px;">
+        <h2 style="font-size:1.3rem; margin-top:0; color:var(--jf-accent, #38bdf8);">3. Alertas Contextuales</h2>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+            <div jettras:id="alertSuccess">Alerta éxito</div>
+            <div jettras:id="alertInfo">Alerta informativa</div>
+            <div jettras:id="alertWarning">Alerta advertencia</div>
+            <div jettras:id="alertDanger">Alerta peligro</div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 4: Formulario con PropertyModel y FeedbackPanel -->
+    <section style="background:var(--jf-surface, #1e293b); border:1px solid var(--jf-border, rgba(255,255,255,0.08)); border-radius:12px; padding:24px;">
+        <h2 style="font-size:1.3rem; margin-top:0; color:var(--jf-accent, #38bdf8);">4. Formulario Reactivo y Validación</h2>
+        
+        <!-- Panel de Feedback de Errores y Confirmaciones -->
+        <div jettras:id="feedback" style="margin-bottom:16px;"></div>
+
+        <form jettras:id="userForm" style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div style="display:flex; flex-direction:column; gap:6px;">
+                <label style="font-size:0.9rem; font-weight:600; color:var(--jf-text, #ffffff);">Nombre de Usuario:</label>
+                <input jettras:id="usernameInput" type="text" style="padding:10px 14px; border-radius:8px; border:1px solid var(--jf-border, #475569); background:rgba(0,0,0,0.2); color:var(--jf-text, #ffffff);" />
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:6px;">
+                <label style="font-size:0.9rem; font-weight:600; color:var(--jf-text, #ffffff);">Correo Electrónico:</label>
+                <input jettras:id="emailInput" type="email" style="padding:10px 14px; border-radius:8px; border:1px solid var(--jf-border, #475569); background:rgba(0,0,0,0.2); color:var(--jf-text, #ffffff);" />
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:6px; grid-column:span 2;">
+                <label style="font-size:0.9rem; font-weight:600; color:var(--jf-text, #ffffff);">Biografía Profesional:</label>
+                <textarea jettras:id="bioInput" style="padding:10px 14px; border-radius:8px; border:1px solid var(--jf-border, #475569); background:rgba(0,0,0,0.2); color:var(--jf-text, #ffffff); font-family:inherit;"></textarea>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:6px;">
+                <label style="font-size:0.9rem; font-weight:600; color:var(--jf-text, #ffffff);">Rol en el Ecosistema:</label>
+                <select jettras:id="roleSelect" style="padding:10px 14px; border-radius:8px; border:1px solid var(--jf-border, #475569); background:rgba(0,0,0,0.2); color:var(--jf-text, #ffffff);"></select>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:10px; margin-top:28px;">
+                <input jettras:id="notificationsCheck" type="checkbox" style="width:20px; height:20px;" />
+                <label style="font-size:0.95rem; color:var(--jf-text, #ffffff);">Recibir notificaciones del servidor Loom</label>
+            </div>
+
+            <div style="grid-column:span 2; margin-top:10px;">
+                <button jettras:id="btnSubmitForm" type="submit" style="padding:12px 28px; font-weight:bold; cursor:pointer;">Guardar Perfil</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- SECCIÓN 5: Modal Dialog, Enlaces y Cards -->
+    <section style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+        <!-- Diálogo Modal -->
+        <div style="background:var(--jf-surface, #1e293b); border:1px solid var(--jf-border, rgba(255,255,255,0.08)); border-radius:12px; padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <h2 style="font-size:1.3rem; margin:0; color:var(--jf-accent, #38bdf8);">5. Diálogos Modales</h2>
+            <p style="color:var(--jf-text-secondary, #94a3b8); margin:0;">
+                Ventanas emergentes centradas con botón de cierre y estilización coherente con el tema.
+            </p>
+            <div>
+                <button jettras:id="btnOpenModal" style="cursor:pointer;">Abrir Diálogo</button>
+            </div>
+            
+            <div jettras:id="demoModal">
+                <p>Este es el contenido interno del modal inyectado por JettraStudio.</p>
+                <p>Respeta el tema visual seleccionado y se cierra con el botón superior derecho.</p>
+            </div>
+        </div>
+
+        <!-- Enlaces e Imágenes -->
+        <div style="background:var(--jf-surface, #1e293b); border:1px solid var(--jf-border, rgba(255,255,255,0.08)); border-radius:12px; padding:24px; display:flex; flex-direction:column; gap:16px;">
+            <h2 style="font-size:1.3rem; margin:0; color:var(--jf-accent, #38bdf8);">6. Enlaces y Recursos</h2>
+            <p style="color:var(--jf-text-secondary, #94a3b8); margin:0;">
+                Enlaces con gestión tipada y soporte de target:
+            </p>
+            <div style="display:flex; gap:16px;">
+                <a jettras:id="linkDocs" href="#" style="color:var(--jf-accent, #38bdf8); font-weight:600; text-decoration:none;">GitHub Oficial &rarr;</a>
+            </div>
+            <div style="margin-top:8px;">
+                <img jettras:id="imgLogo" alt="Logo Banner" style="max-width:100%; border-radius:8px;" />
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 6: Tarjetas de Características (Cards) -->
+    <section style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px;">
+        <div jettras:id="cardFeature1"></div>
+        <div jettras:id="cardFeature2"></div>
+        <div jettras:id="cardFeature3"></div>
+    </section>
+
+</div>

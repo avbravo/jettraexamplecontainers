@@ -1,0 +1,244 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/avbravo/apache-maven-3.9.7/lib/jansi-2.4.1.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/home/avbravo/apache-maven-3.9.7/lib/guava-33.2.0-jre.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.jettra:JettraWebExample >---------------------
+[INFO] Building JettraWebExample 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ JettraWebExample ---
+[INFO] Deleting /home/avbravo/NetBeansProjects/jettrastack_local/JettraWorkspace/JettraWebExample/target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ JettraWebExample ---
+[INFO] Copying 3 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ JettraWebExample ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 45 source files with javac [debug target 25] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ JettraWebExample ---
+[INFO] skip non existing resourceDirectory /home/avbravo/NetBeansProjects/jettrastack_local/JettraWorkspace/JettraWebExample/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ JettraWebExample ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ JettraWebExample ---
+[INFO] 
+[INFO] --- jar:3.3.0:jar (default-jar) @ JettraWebExample ---
+[INFO] Building jar: /home/avbravo/NetBeansProjects/jettrastack_local/JettraWorkspace/JettraWebExample/target/JettraWebExample-1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- shade:3.5.1:shade (default) @ JettraWebExample ---
+[INFO] Including com.jettra:JettraServer:jar:1.0-SNAPSHOT in the shaded jar.
+[INFO] Including io.jsonwebtoken:jjwt-api:jar:0.11.5 in the shaded jar.
+[INFO] Including io.jsonwebtoken:jjwt-impl:jar:0.11.5 in the shaded jar.
+[INFO] Including io.jsonwebtoken:jjwt-jackson:jar:0.11.5 in the shaded jar.
+[INFO] Including com.fasterxml.jackson.core:jackson-databind:jar:2.12.6.1 in the shaded jar.
+[INFO] Including com.fasterxml.jackson.core:jackson-annotations:jar:2.12.6 in the shaded jar.
+[INFO] Including com.fasterxml.jackson.core:jackson-core:jar:2.12.6 in the shaded jar.
+[INFO] Including com.google.code.gson:gson:jar:2.10.1 in the shaded jar.
+[INFO] Including io.jettra.wui:JettraWUI:jar:1.0.0-SNAPSHOT in the shaded jar.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] jackson-core-2.12.6.jar, jackson-databind-2.12.6.1.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/NOTICE
+[WARNING] JettraServer-1.0-SNAPSHOT.jar, JettraWUI-1.0.0-SNAPSHOT.jar, JettraWebExample-1.0-SNAPSHOT.jar, gson-2.10.1.jar, jackson-annotations-2.12.6.jar, jackson-core-2.12.6.jar, jackson-databind-2.12.6.1.jar, jjwt-api-0.11.5.jar, jjwt-impl-0.11.5.jar, jjwt-jackson-0.11.5.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/MANIFEST.MF
+[WARNING] jackson-annotations-2.12.6.jar, jackson-core-2.12.6.jar, jackson-databind-2.12.6.1.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/LICENSE
+[WARNING] JettraServer-1.0-SNAPSHOT.jar, JettraWebExample-1.0-SNAPSHOT.jar define 1 overlapping resource: 
+[WARNING]   - jettra-config.properties
+[WARNING] maven-shade-plugin has detected that some files are
+[WARNING] present in two or more JARs. When this happens, only one
+[WARNING] single version of the file is copied to the uber jar.
+[WARNING] Usually this is not harmful and you can skip these warnings,
+[WARNING] otherwise try to manually exclude artifacts based on
+[WARNING] mvn dependency:tree -Ddetail=true and the above output.
+[WARNING] See https://maven.apache.org/plugins/maven-shade-plugin/
+[INFO] Replacing original artifact with shaded artifact.
+[INFO] Replacing /home/avbravo/NetBeansProjects/jettrastack_local/JettraWorkspace/JettraWebExample/target/JettraWebExample-1.0-SNAPSHOT.jar with /home/avbravo/NetBeansProjects/jettrastack_local/JettraWorkspace/JettraWebExample/target/JettraWebExample-1.0-SNAPSHOT-shaded.jar
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ JettraWebExample ---
+[INFO] Copying 3 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ JettraWebExample ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ JettraWebExample ---
+[INFO] skip non existing resourceDirectory /home/avbravo/NetBeansProjects/jettrastack_local/JettraWorkspace/JettraWebExample/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ JettraWebExample ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ JettraWebExample ---
+[INFO] Skipping execution of surefire because it has already been run for this configuration
+[INFO] 
+[INFO] --- jar:3.3.0:jar (default-jar) @ JettraWebExample ---
+[INFO] 
+[INFO] --- shade:3.5.1:shade (default) @ JettraWebExample ---
+[INFO] Including com.jettra:JettraServer:jar:1.0-SNAPSHOT in the shaded jar.
+[INFO] Including io.jsonwebtoken:jjwt-api:jar:0.11.5 in the shaded jar.
+[INFO] Including io.jsonwebtoken:jjwt-impl:jar:0.11.5 in the shaded jar.
+[INFO] Including io.jsonwebtoken:jjwt-jackson:jar:0.11.5 in the shaded jar.
+[INFO] Including com.fasterxml.jackson.core:jackson-databind:jar:2.12.6.1 in the shaded jar.
+[INFO] Including com.fasterxml.jackson.core:jackson-annotations:jar:2.12.6 in the shaded jar.
+[INFO] Including com.fasterxml.jackson.core:jackson-core:jar:2.12.6 in the shaded jar.
+[INFO] Including com.google.code.gson:gson:jar:2.10.1 in the shaded jar.
+[INFO] Including io.jettra.wui:JettraWUI:jar:1.0.0-SNAPSHOT in the shaded jar.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] JettraWebExample-1.0-SNAPSHOT.jar, jackson-databind-2.12.6.1.jar define 703 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/com.fasterxml.jackson.core/jackson-databind/pom.properties
+[WARNING]   - META-INF/maven/com.fasterxml.jackson.core/jackson-databind/pom.xml
+[WARNING]   - META-INF/services/com.fasterxml.jackson.core.ObjectCodec
+[WARNING]   - com.fasterxml.jackson.databind.AbstractTypeResolver
+[WARNING]   - com.fasterxml.jackson.databind.AnnotationIntrospector
+[WARNING]   - com.fasterxml.jackson.databind.AnnotationIntrospector$ReferenceProperty
+[WARNING]   - com.fasterxml.jackson.databind.AnnotationIntrospector$ReferenceProperty$Type
+[WARNING]   - com.fasterxml.jackson.databind.BeanDescription
+[WARNING]   - com.fasterxml.jackson.databind.BeanProperty
+[WARNING]   - com.fasterxml.jackson.databind.BeanProperty$Bogus
+[WARNING]   - 693 more...
+[WARNING] JettraWebExample-1.0-SNAPSHOT.jar, jackson-annotations-2.12.6.jar define 73 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/com.fasterxml.jackson.core/jackson-annotations/pom.properties
+[WARNING]   - META-INF/maven/com.fasterxml.jackson.core/jackson-annotations/pom.xml
+[WARNING]   - com.fasterxml.jackson.annotation.JacksonAnnotation
+[WARNING]   - com.fasterxml.jackson.annotation.JacksonAnnotationValue
+[WARNING]   - com.fasterxml.jackson.annotation.JacksonAnnotationsInside
+[WARNING]   - com.fasterxml.jackson.annotation.JacksonInject
+[WARNING]   - com.fasterxml.jackson.annotation.JacksonInject$Value
+[WARNING]   - com.fasterxml.jackson.annotation.JsonAlias
+[WARNING]   - com.fasterxml.jackson.annotation.JsonAnyGetter
+[WARNING]   - com.fasterxml.jackson.annotation.JsonAnySetter
+[WARNING]   - 63 more...
+[WARNING] JettraWebExample-1.0-SNAPSHOT.jar, gson-2.10.1.jar define 220 overlapping classes and resources: 
+[WARNING]   - META-INF.versions.9.module-info
+[WARNING]   - META-INF/maven/com.google.code.gson/gson/pom.properties
+[WARNING]   - META-INF/maven/com.google.code.gson/gson/pom.xml
+[WARNING]   - com.google.gson.ExclusionStrategy
+[WARNING]   - com.google.gson.FieldAttributes
+[WARNING]   - com.google.gson.FieldNamingPolicy
+[WARNING]   - com.google.gson.FieldNamingPolicy$1
+[WARNING]   - com.google.gson.FieldNamingPolicy$2
+[WARNING]   - com.google.gson.FieldNamingPolicy$3
+[WARNING]   - com.google.gson.FieldNamingPolicy$4
+[WARNING]   - 210 more...
+[WARNING] JettraWebExample-1.0-SNAPSHOT.jar, jackson-core-2.12.6.jar define 127 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/com.fasterxml.jackson.core/jackson-core/pom.properties
+[WARNING]   - META-INF/maven/com.fasterxml.jackson.core/jackson-core/pom.xml
+[WARNING]   - META-INF/services/com.fasterxml.jackson.core.JsonFactory
+[WARNING]   - com.fasterxml.jackson.core.Base64Variant
+[WARNING]   - com.fasterxml.jackson.core.Base64Variant$PaddingReadBehaviour
+[WARNING]   - com.fasterxml.jackson.core.Base64Variants
+[WARNING]   - com.fasterxml.jackson.core.FormatFeature
+[WARNING]   - com.fasterxml.jackson.core.FormatSchema
+[WARNING]   - com.fasterxml.jackson.core.JacksonException
+[WARNING]   - com.fasterxml.jackson.core.JsonEncoding
+[WARNING]   - 117 more...
+[WARNING] JettraWebExample-1.0-SNAPSHOT.jar, jjwt-jackson-0.11.5.jar define 8 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.jsonwebtoken/jjwt-jackson/pom.properties
+[WARNING]   - META-INF/maven/io.jsonwebtoken/jjwt-jackson/pom.xml
+[WARNING]   - META-INF/services/io.jsonwebtoken.io.Deserializer
+[WARNING]   - META-INF/services/io.jsonwebtoken.io.Serializer
+[WARNING]   - io.jsonwebtoken.jackson.io.JacksonDeserializer
+[WARNING]   - io.jsonwebtoken.jackson.io.JacksonDeserializer$1
+[WARNING]   - io.jsonwebtoken.jackson.io.JacksonDeserializer$MappedTypeDeserializer
+[WARNING]   - io.jsonwebtoken.jackson.io.JacksonSerializer
+[WARNING] JettraWUI-1.0.0-SNAPSHOT.jar, JettraWebExample-1.0-SNAPSHOT.jar define 83 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.jettra.wui/JettraWUI/pom.properties
+[WARNING]   - META-INF/maven/io.jettra.wui/JettraWUI/pom.xml
+[WARNING]   - io.jettra.wui.assets.JettraTheme
+[WARNING]   - io.jettra.wui.complex.Avatar
+[WARNING]   - io.jettra.wui.complex.Avatar$1
+[WARNING]   - io.jettra.wui.complex.Avatar$2
+[WARNING]   - io.jettra.wui.complex.Avatar$Shape
+[WARNING]   - io.jettra.wui.complex.Avatar$Size
+[WARNING]   - io.jettra.wui.complex.AvatarGroup
+[WARNING]   - io.jettra.wui.complex.Carousel
+[WARNING]   - 73 more...
+[WARNING] JettraWebExample-1.0-SNAPSHOT.jar, jackson-annotations-2.12.6.jar, jackson-core-2.12.6.jar, jackson-databind-2.12.6.1.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/LICENSE
+[WARNING] JettraServer-1.0-SNAPSHOT.jar, JettraWUI-1.0.0-SNAPSHOT.jar, JettraWebExample-1.0-SNAPSHOT.jar, gson-2.10.1.jar, jackson-annotations-2.12.6.jar, jackson-core-2.12.6.jar, jackson-databind-2.12.6.1.jar, jjwt-api-0.11.5.jar, jjwt-impl-0.11.5.jar, jjwt-jackson-0.11.5.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/MANIFEST.MF
+[WARNING] JettraWebExample-1.0-SNAPSHOT.jar, jackson-core-2.12.6.jar, jackson-databind-2.12.6.1.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/NOTICE
+[WARNING] JettraWebExample-1.0-SNAPSHOT.jar, jjwt-api-0.11.5.jar define 83 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.jsonwebtoken/jjwt-api/pom.properties
+[WARNING]   - META-INF/maven/io.jsonwebtoken/jjwt-api/pom.xml
+[WARNING]   - io.jsonwebtoken.ClaimJwtException
+[WARNING]   - io.jsonwebtoken.Claims
+[WARNING]   - io.jsonwebtoken.ClaimsMutator
+[WARNING]   - io.jsonwebtoken.Clock
+[WARNING]   - io.jsonwebtoken.CompressionCodec
+[WARNING]   - io.jsonwebtoken.CompressionCodecResolver
+[WARNING]   - io.jsonwebtoken.CompressionCodecs
+[WARNING]   - io.jsonwebtoken.CompressionException
+[WARNING]   - 73 more...
+[WARNING] JettraWebExample-1.0-SNAPSHOT.jar, jjwt-impl-0.11.5.jar define 66 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/io.jsonwebtoken/jjwt-impl/pom.properties
+[WARNING]   - META-INF/maven/io.jsonwebtoken/jjwt-impl/pom.xml
+[WARNING]   - META-INF/services/io.jsonwebtoken.CompressionCodec
+[WARNING]   - io.jsonwebtoken.impl.AbstractTextCodec
+[WARNING]   - io.jsonwebtoken.impl.AndroidBase64Codec
+[WARNING]   - io.jsonwebtoken.impl.Base64Codec
+[WARNING]   - io.jsonwebtoken.impl.Base64UrlCodec
+[WARNING]   - io.jsonwebtoken.impl.DefaultClaims
+[WARNING]   - io.jsonwebtoken.impl.DefaultClock
+[WARNING]   - io.jsonwebtoken.impl.DefaultHeader
+[WARNING]   - 56 more...
+[WARNING] JettraServer-1.0-SNAPSHOT.jar, JettraWebExample-1.0-SNAPSHOT.jar define 8 overlapping classes and resources: 
+[WARNING]   - META-INF/maven/com.jettra/JettraServer/pom.properties
+[WARNING]   - META-INF/maven/com.jettra/JettraServer/pom.xml
+[WARNING]   - com.jettra.server.JettraServer
+[WARNING]   - com.jettra.server.config.ConfigInjector
+[WARNING]   - com.jettra.server.config.JettraConfig
+[WARNING]   - com.jettra.server.config.JettraConfigProperty
+[WARNING]   - com.jettra.server.test.ExampleRest
+[WARNING]   - jettra-config.properties
+[WARNING] maven-shade-plugin has detected that some files are
+[WARNING] present in two or more JARs. When this happens, only one
+[WARNING] single version of the file is copied to the uber jar.
+[WARNING] Usually this is not harmful and you can skip these warnings,
+[WARNING] otherwise try to manually exclude artifacts based on
+[WARNING] mvn dependency:tree -Ddetail=true and the above output.
+[WARNING] See https://maven.apache.org/plugins/maven-shade-plugin/
+[INFO] Replacing original artifact with shaded artifact.
+[INFO] Replacing /home/avbravo/NetBeansProjects/jettrastack_local/JettraWorkspace/JettraWebExample/target/JettraWebExample-1.0-SNAPSHOT.jar with /home/avbravo/NetBeansProjects/jettrastack_local/JettraWorkspace/JettraWebExample/target/JettraWebExample-1.0-SNAPSHOT-shaded.jar
+[INFO] 
+[INFO] --- install:3.1.1:install (default-install) @ JettraWebExample ---
+[INFO] Installing /home/avbravo/NetBeansProjects/jettrastack_local/JettraWorkspace/JettraWebExample/pom.xml to /home/avbravo/.m2/repository/com/jettra/JettraWebExample/1.0-SNAPSHOT/JettraWebExample-1.0-SNAPSHOT.pom
+[INFO] Installing /home/avbravo/NetBeansProjects/jettrastack_local/JettraWorkspace/JettraWebExample/target/JettraWebExample-1.0-SNAPSHOT.jar to /home/avbravo/.m2/repository/com/jettra/JettraWebExample/1.0-SNAPSHOT/JettraWebExample-1.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.483 s
+[INFO] Finished at: 2026-03-25T16:17:46-05:00
+[INFO] ------------------------------------------------------------------------
+Iniciando aplicación Web: Jettra Web 3D Future Dashboard
+Levantando servidor de enrutamiento JettraServer empotrado...
+Starting JettraServer...
+Java version: 25.0.1
+Initializing ExampleRest and ConfigInjector...
+null null
+java.net.BindException: La dirección ya se está usando
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:522)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:335)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:297)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:80)
+	at jdk.httpserver/sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:145)
+	at jdk.httpserver/sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:45)
+	at jdk.httpserver/sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at jdk.httpserver/com.sun.net.httpserver.HttpServer.create(HttpServer.java:152)
+	at com.jettra.server.JettraServer.start(JettraServer.java:77)
+	at com.jettra.example.WebExampleMain.main(WebExampleMain.java:67)
+Failed to start JettraServer embedded HTTP server.

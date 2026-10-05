@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>io.jettra</groupId>
+    <artifactId>jettraexamplecontainers</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>jettraexamplecontainers</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <modules>
+    <module>FacoWeb</module>
+    <module>JCOFA</module>
+    <module>JettraFluxBackEnd</module>
+    <module>JettraFluxExample</module>
+    <module>JettraFluxServerExample</module>
+    <module>JettraKanban</module>
+    <module>JettraStoreExample</module>
+    <module>JettraStudioExample</module>
+    <module>JettraWebBackEnd</module>
+    <module>JettraWebExample</module>
+  </modules>
+</project>

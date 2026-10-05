@@ -1,0 +1,87 @@
+<div class="catalog-container" style="max-width:1200px; margin:0 auto; display:flex; flex-direction:column; gap:24px;">
+
+    <!-- Navegación -->
+    <nav style="display:flex; justify-content:space-between; align-items:center; background:var(--jf-surface, #1e293b); padding:12px 20px; border-radius:10px; border:1px solid var(--jf-border, rgba(255,255,255,0.08));">
+        <div style="font-weight:700; color:var(--jf-accent, #38bdf8); font-size:1.1rem;">
+            📦 JettraStudio Catalog
+        </div>
+        <div style="display:flex; gap:16px; align-items:center;">
+            <a jettras:id="linkHome" href="/" style="color:var(--jf-text, #f8fafc); text-decoration:none; font-weight:500;">Inicio</a>
+            <a jettras:id="linkShowcase" href="/components" style="color:var(--jf-text, #f8fafc); text-decoration:none; font-weight:500;">Componentes</a>
+            <a href="/catalog" style="color:var(--jf-accent, #38bdf8); text-decoration:none; font-weight:600;">Catálogo / Inventario</a>
+        </div>
+    </nav>
+
+    <!-- Encabezado -->
+    <div>
+        <h1 jettras:id="catalogTitle" style="font-size:2.2rem; font-weight:800; margin:0 0 8px 0; color:var(--jf-text, #ffffff);">
+            Inventario Central
+        </h1>
+        <div jettras:id="catalogAlert">Mensaje de alerta</div>
+    </div>
+
+    <!-- Panel de Feedback -->
+    <div jettras:id="catalogFeedback"></div>
+
+    <!-- Diálogo Modal de Detalles -->
+    <div jettras:id="detailsModal">
+        <p>Detalles avanzados del producto seleccionado.</p>
+        <p>Este diálogo demuestra la interacción con <code>Modal.open()</code> y temas dinámicos.</p>
+    </div>
+
+    <!-- Tabla Dinámica con ListView -->
+    <div style="background:var(--jf-surface, #1e293b); border:1px solid var(--jf-border, rgba(255,255,255,0.08)); border-radius:12px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.2);">
+        <table style="width:100%; border-collapse:collapse; text-align:left;">
+            <thead>
+                <tr style="background:rgba(0,0,0,0.3); border-bottom:1px solid var(--jf-border, rgba(255,255,255,0.1));">
+                    <th style="padding:14px 18px; color:var(--jf-accent, #38bdf8); font-size:0.85rem; text-transform:uppercase;">ID</th>
+                    <th style="padding:14px 18px; color:var(--jf-accent, #38bdf8); font-size:0.85rem; text-transform:uppercase;">Producto</th>
+                    <th style="padding:14px 18px; color:var(--jf-accent, #38bdf8); font-size:0.85rem; text-transform:uppercase;">Categoría</th>
+                    <th style="padding:14px 18px; color:var(--jf-accent, #38bdf8); font-size:0.85rem; text-transform:uppercase;">Stock</th>
+                    <th style="padding:14px 18px; color:var(--jf-accent, #38bdf8); font-size:0.85rem; text-transform:uppercase;">Precio</th>
+                    <th style="padding:14px 18px; color:var(--jf-accent, #38bdf8); font-size:0.85rem; text-transform:uppercase;">Estado</th>
+                    <th style="padding:14px 18px; color:var(--jf-accent, #38bdf8); font-size:0.85rem; text-transform:uppercase; text-align:right;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr jettras:id="productRows" style="border-bottom:1px solid var(--jf-border, rgba(255,255,255,0.05)); transition:background 0.2s;">
+                    <td jettras:id="prodId" style="padding:14px 18px; font-weight:600; color:var(--jf-text, #ffffff);">PROD-000</td>
+                    <td jettras:id="prodName" style="padding:14px 18px; color:var(--jf-text, #ffffff);">Nombre</td>
+                    <td jettras:id="prodCategory" style="padding:14px 18px; color:var(--jf-text-secondary, #94a3b8);">Categoría</td>
+                    <td jettras:id="prodStock" style="padding:14px 18px; color:var(--jf-text, #ffffff);">0</td>
+                    <td jettras:id="prodPrice" style="padding:14px 18px; font-weight:700; color:var(--jf-accent, #38bdf8);">$0.00</td>
+                    <td style="padding:14px 18px;">
+                        <span jettras:id="prodStatus" style="background:rgba(34,197,94,0.15); color:var(--jf-success, #22c55e); padding:4px 10px; border-radius:20px; font-size:0.75rem; font-weight:700; border:1px solid rgba(34,197,94,0.3);">ACTIVO</span>
+                    </td>
+                    <td style="padding:14px 18px; text-align:right;">
+                        <div style="display:inline-flex; gap:8px;">
+                            <button jettras:id="btnView" style="cursor:pointer; font-size:0.85rem;">Detalles</button>
+                            <button jettras:id="btnBuy" style="cursor:pointer; font-size:0.85rem;">Comprar</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Formulario para agregar producto -->
+    <div style="background:var(--jf-surface, #1e293b); border:1px solid var(--jf-border, rgba(255,255,255,0.08)); border-radius:12px; padding:24px;">
+        <h3 style="margin-top:0; color:var(--jf-text, #ffffff); font-size:1.15rem;">Agregar Nuevo Producto al Catálogo</h3>
+        <form jettras:id="addForm" style="display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end;">
+            <div style="flex:1; min-width:240px; display:flex; flex-direction:column; gap:6px;">
+                <label style="font-size:0.85rem; color:var(--jf-text-secondary, #94a3b8);">Nombre:</label>
+                <input jettras:id="newNameInput" type="text" style="padding:10px 14px; border-radius:8px; border:1px solid var(--jf-border, #475569); background:rgba(0,0,0,0.2); color:var(--jf-text, #ffffff);" />
+            </div>
+
+            <div style="flex:1; min-width:200px; display:flex; flex-direction:column; gap:6px;">
+                <label style="font-size:0.85rem; color:var(--jf-text-secondary, #94a3b8);">Categoría:</label>
+                <input jettras:id="newCategoryInput" type="text" style="padding:10px 14px; border-radius:8px; border:1px solid var(--jf-border, #475569); background:rgba(0,0,0,0.2); color:var(--jf-text, #ffffff);" />
+            </div>
+
+            <div>
+                <button jettras:id="btnAddProduct" type="submit" style="padding:11px 24px; font-weight:600; cursor:pointer;">+ Registrar</button>
+            </div>
+        </form>
+    </div>
+
+</div>
