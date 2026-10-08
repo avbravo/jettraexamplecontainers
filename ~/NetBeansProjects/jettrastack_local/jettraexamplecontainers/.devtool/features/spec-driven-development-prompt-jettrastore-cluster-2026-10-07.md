@@ -1,12 +1,12 @@
 ---
 id: "spec-driven-development-prompt-jettrastore-cluster-2026-10-07"
-status: "in-progress"
+status: "review"
 priority: "medium"
 assignee: null
 epic: null
 dueDate: null
 created: "2026-10-07T17:21:04.505Z"
-modified: "2026-10-07T17:21:04.505Z"
+modified: "2026-10-08T18:32:34.767Z"
 completedAt: null
 labels: []
 order: "a0"

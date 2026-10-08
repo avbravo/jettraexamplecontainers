@@ -1,12 +1,12 @@
 ---
 id: "role-objective-2026-10-07"
-status: "in-progress"
+status: "review"
 priority: "medium"
 assignee: null
 epic: null
 dueDate: null
 created: "2026-10-07T20:34:46.771Z"
-modified: "2026-10-07T20:34:46.771Z"
+modified: "2026-10-08T18:32:35.577Z"
 completedAt: null
 labels: []
 order: "a1"
