@@ -37,7 +37,13 @@ public class MassiveFindAllMillionRecordsExample {
     private static final NumberFormat NUMBER_FMT = NumberFormat.getIntegerInstance(Locale.US);
 
     public static void run(JettraDriver driver) {
-        ConsoleColor.printHeader("14. CONSULTAS MASIVAS findAll() EN example_factura_db (MILLONES DE REGISTROS)");
+        int defaultClientes = Integer.getInteger("jettra.massive.clientes", 2_000);
+        int defaultFacturas = Integer.getInteger("jettra.massive.facturas", 10_000);
+        run(driver, defaultClientes, defaultFacturas);
+    }
+
+    public static void run(JettraDriver driver, int targetClientes, int targetFacturas) {
+        ConsoleColor.printHeader("14. CONSULTAS MASIVAS findAll() EN example_factura_db (VOLUMEN OPTIMIZADO)");
         System.out.println("Base de datos de prueba : " + DATABASE_NAME);
         System.out.println("Colecciones evaluadas   : " + COLLECTION_CLIENTES + " y " + COLLECTION_FACTURAS);
         System.out.println("Objetivo                : Evaluar rendimiento, impacto en Heap y resiliencia Anti-OOM");
@@ -58,11 +64,11 @@ public class MassiveFindAllMillionRecordsExample {
         ConsoleColor.printInfo("Colección '" + COLLECTION_FACTURAS + "' (actual)", NUMBER_FMT.format(facturasExistentes) + " registros");
 
         // Si las colecciones tienen pocos registros, poblamos un lote para la prueba
-        if (clientesExistentes < 50_000) {
-            poblarClientes(clientesEngine, 100_000);
+        if (clientesExistentes < targetClientes) {
+            poblarClientes(clientesEngine, (int) (targetClientes - clientesExistentes));
         }
-        if (facturasExistentes < 100_000) {
-            poblarFacturas(facturasEngine, 1_000_025);
+        if (facturasExistentes < targetFacturas) {
+            poblarFacturas(facturasEngine, (int) (targetFacturas - facturasExistentes));
         }
 
         long totalClientes = clientesEngine.count();

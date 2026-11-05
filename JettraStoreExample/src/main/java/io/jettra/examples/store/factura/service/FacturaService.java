@@ -147,19 +147,12 @@ public class FacturaService {
         if (pageSize < 1) pageSize = 10;
 
         DocumentEngine docEngine = driver.getDocumentEngine(DATABASE_NAME, COLLECTION_NAME);
-        List<Map<String, Object>> all = docEngine.findAll();
-        int fromIndex = (page - 1) * pageSize;
-        if (fromIndex >= all.size()) {
-            return Collections.emptyList();
-        }
-        int toIndex = Math.min(fromIndex + pageSize, all.size());
-        List<Map<String, Object>> sub = all.subList(fromIndex, toIndex);
-
-        List<Factura> result = new ArrayList<>(sub.size());
-        for (Map<String, Object> m : sub) {
-            result.add(Factura.fromMap(m));
-        }
-        return result;
+        int skip = (page - 1) * pageSize;
+        return docEngine.stream()
+                .skip(skip)
+                .limit(pageSize)
+                .map(Factura::fromMap)
+                .toList();
     }
 
     /**
