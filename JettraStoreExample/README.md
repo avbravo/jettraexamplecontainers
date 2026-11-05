@@ -1,27 +1,36 @@
 # JettraStoreExample 🚀 (Java 25 + Maven)
 
-Proyecto de referencia y demostración completa de **JettraStore** implementando **JettraDriver**. Expone ejemplos funcionales con cada uno de los motores multimodelo integrados, operando tanto en memoria **RAM** (`StorageMode.JVM_RAM`) como en disco directo **DISK_MEMORY** (`StorageMode.DISK_MEMORY`) mediante Panama FFM API con **JettraMemory**.
+Proyecto de referencia y demostración completa de **JettraStore** implementando **JettraDriver**. Expone ejemplos funcionales con cada uno de los motores multimodelo integrados, operando en los 3 modos de almacenamiento nativos:
+1. **`JVM_RAM`**: Modo memoria RAM estándar de la JVM (Heap & Stack).
+2. **`DISK_MEMORY`**: Motor de disco directo Off-Heap LSM (`JettraMemory`).
+3. **`OFF_HEAP`**: Motor de páginas ranuradas nativas Slotted-Page FFM Panama (`JettraStore-OffHeap`).
+
+Además, integra un módulo empresarial completo de **Facturación (`example_factura_db`)** con operaciones CRUD completas y exposición de **Endpoints REST** mediante **JettraRest** sobre Virtual Threads.
 
 ---
 
 ## 📋 Características Principales
 
-- **Java 25 LTS:** Aprovecha *Virtual Threads* (`Thread.ofVirtual()`), *Records*, *Pattern Matching* y *Project Panama FFM API* (Foreign Function & Memory API).
-- **JettraDriver:** Interfaz y conector unificado (`io.jettra.examples.store.driver.JettraDriver`) con soporte de gestión de catálogo, transiciones de almacenamiento y acceso directo a motores.
-- **Multimodelo Completo (9 Motores):**
-  1. 📄 **DocumentEngine:** NoSQL tipo JSON/BSON con control concurrente RWLock y listas perezosas.
-  2. 🔑 **KeyValueEngine:** Caché de ultra-baja latencia O(1) con soporte directo de buffers binarios.
-  3. 🧠 **VectorEngine:** Indexación de embeddings IA multidimensionales y búsqueda semántica por similitud coseno (*Cosine Similarity*).
-  4. 🕸️ **GraphEngine:** Grafos con vértices, aristas dirigidas tipadas y propiedades arbitrarias.
-  5. ⏱️ **TimeSeriesEngine:** Telemetría de alta frecuencia, consultas por ventanas de tiempo y promedios en ventana.
-  6. 🗺️ **GeospatialEngine:** Coordenadas terrestres (lat/lon), cálculo geodésico Haversine y búsqueda por radio en Km.
-  7. 📊 **ColumnarEngine:** Tablas analíticas en memoria para OLAP con agregaciones vectorizadas (`sumColumn`).
-  8. ☕ **RecordsEngine:** Persistencia fuertemente tipada sobre Java 25 Records inmutables con cero mapeos ORM.
-  9. ⚡ **JettraMemory (Off-Heap Panama):** Almacenamiento binario nativo fuera del Garbage Collector (Zero-GC pressure).
-- **Modos de Almacenamiento:**
-  - `StorageMode.JVM_RAM`: Manipulación en memoria de la JVM para velocidad máxima.
-  - `StorageMode.DISK_MEMORY`: Persistencia directa en disco Off-Heap LSM con compactación en caliente.
-- **Consultas JettraSQL y Streaming:** Consultas `sql()`, paginación acotada `sqlPaged()` y cursores distribuidos `LazyPagedCursor` O(1) de Heap.
+- **Java 25 LTS:** Aprovecha *Virtual Threads* (`Thread.ofVirtual()`), *Records*, *Pattern Matching*, y *Project Panama FFM API* (`MemorySegment`, `Arena`).
+- **JettraDriver:** Controlador unificado (`io.jettra.examples.store.driver.JettraDriver`) con soporte de catálogo, conmutación dinámica de almacenamiento y acceso directo a todos los motores.
+- **Los 3 Modos de Almacenamiento:**
+  - `StorageMode.JVM_RAM`: Modo memoria RAM estándar de la JVM (Heap & Stack). Máxima velocidad in-memory para prototipado y cargas transitorias.
+  - `StorageMode.DISK_MEMORY`: Motor de disco directo Off-Heap LSM con buffers mapeados en archivo (`JettraMemory`). Persistencia directa sin pausas de Garbage Collector.
+  - `StorageMode.OFF_HEAP`: Motor de páginas ranuradas nativas Slotted-Page en memoria virtual no administrada (`JettraStore-OffHeap`). Cero pausas de GC y liberación determinista por ámbito RAII (`Arena`).
+- **Módulo de Facturación Empresarial (`example_factura_db`):**
+  - Implementación completa de CRUD sobre `facturas` y `detalles_factura`.
+  - Paginación de resultados y cálculo de subtotales e impuestos.
+  - Alternancia dinámica de modos de almacenamiento en caliente.
+- **Endpoints REST con JettraRest (`/api/facturas`):**
+  - `GET /api/facturas?page=1&size=10`: Listado paginado de facturas.
+  - `GET /api/facturas/{id}`: Consulta de factura por ID.
+  - `POST /api/facturas`: Creación de nueva factura.
+  - `PUT /api/facturas/{id}`: Modificación de factura.
+  - `DELETE /api/facturas/{id}`: Eliminación de factura.
+  - `GET /api/facturas/storage-mode`: Consulta del modo de almacenamiento activo.
+  - `POST /api/facturas/storage-mode/{mode}`: Conmutación de modo (`JVM_RAM`, `DISK_MEMORY`, `OFF_HEAP`).
+- **Multimodelo Completo (9 Motores):** Document, KeyValue, Vector, Graph, TimeSeries, Geospatial, Columnar, Records y Off-Heap Memory.
+- **JettraPolice Sentinel:** Monitoreo y protección proactiva Anti-OOM en tiempo real.
 
 ---
 
@@ -33,31 +42,31 @@ JettraStoreExample/
 ├── README.md
 └── src/
     ├── main/java/io/jettra/examples/store/
-    │   ├── JettraStoreExampleApp.java        # Ejecutor principal de todos los motores
+    │   ├── JettraStoreExampleApp.java           # Ejecutor principal de demostración
     │   ├── driver/
-    │   │   ├── JettraDriver.java             # Contrato de la API del Driver
-    │   │   └── JettraDriverImpl.java         # Implementación sobre JettraClient
-    │   ├── engines/
-    │   │   ├── DocumentEngineExample.java    # Ejemplo Motor de Documentos
-    │   │   ├── KeyValueEngineExample.java    # Ejemplo Motor Clave-Valor
-    │   │   ├── VectorEngineExample.java      # Ejemplo Motor Vectorial (Embeddings)
-    │   │   ├── GraphEngineExample.java       # Ejemplo Motor de Grafos
-    │   │   ├── TimeSeriesEngineExample.java  # Ejemplo Motor Series Temporales
-    │   │   ├── GeospatialEngineExample.java  # Ejemplo Motor Geoespacial
-    │   │   ├── ColumnarEngineExample.java    # Ejemplo Motor Columnar (OLAP)
-    │   │   ├── RecordsEngineExample.java     # Ejemplo Pure Object / Records
-    │   │   └── MemoryOffHeapExample.java     # Ejemplo Off-Heap Panama FFM
+    │   │   ├── JettraDriver.java                # Contrato de la API del Driver
+    │   │   └── JettraDriverImpl.java            # Implementación sobre JettraClient
+    │   ├── factura/
+    │   │   ├── model/
+    │   │   │   ├── Factura.java                 # Modelo de Factura
+    │   │   │   └── DetalleFactura.java          # Línea de detalle de factura
+    │   │   ├── service/
+    │   │   │   └── FacturaService.java          # CRUD sobre example_factura_db en los 3 modos
+    │   │   ├── rest/
+    │   │   │   └── FacturaRestController.java   # Controlador REST con JettraRest
+    │   │   └── FacturaCrudExample.java          # Demostración en consola del CRUD en 3 modos
+    │   ├── engines/                             # Motores multimodelo (Document, KV, Vector, etc.)
     │   ├── storage/
-    │   │   └── StorageModeComparisonExample.java # Benchmark y comparativa RAM vs DISK_MEMORY
+    │   │   └── StorageModeComparisonExample.java # Comparativa entre JVM_RAM, DISK_MEMORY y OFF_HEAP
     │   ├── query/
-    │   │   └── SqlAndCursorExample.java      # Consultas SQL, sqlPaged y Lazy Cursor
-    │   ├── model/
-    │   │   ├── ProductRecord.java            # Record de producto para RecordsEngine
-    │   │   └── SensorReading.java            # Record de telemetría IoT
-    │   └── util/
-    │       └── ConsoleColor.java             # Formato visual con colores ANSI
+    │   │   ├── SqlAndCursorExample.java         # Consultas SQL, Paginación y Cursores
+    │   │   └── MassiveFindAllMillionRecordsExample.java # Consultas masivas sobre example_factura_db
+    │   └── police/
+    │       └── AntiOomStreamingSentinelExample.java # Monitoreo de memoria Anti-OOM
     └── test/java/io/jettra/examples/store/
-        └── JettraDriverEnginesTest.java      # Pruebas unitarias JUnit 5 de todos los motores
+        ├── FacturaCrudAndRestTest.java          # Pruebas de CRUD y Endpoints REST en 3 modos
+        ├── JettraDriverEnginesTest.java         # Pruebas unitarias de todos los motores
+        └── MassiveFindAllMillionRecordsTest.java # Pruebas con centinela JettraPolice
 ```
 
 ---
@@ -65,7 +74,7 @@ JettraStoreExample/
 ## 🚀 Compilación y Ejecución
 
 ### Prerrequisitos
-- **Java 25+** (con `--enable-preview`)
+- **Java 25+** (con soporte preview)
 - **Maven 3.9+**
 
 ### 1. Compilar el proyecto
@@ -73,41 +82,55 @@ JettraStoreExample/
 mvn clean compile
 ```
 
-### 2. Ejecutar las pruebas unitarias
+### 2. Ejecutar las pruebas unitarias e integración (incluye pruebas REST)
 ```bash
 mvn test
 ```
 
-### 3. Ejecutar la demostración completa interactiva
+### 3. Ejecutar la aplicación interactiva de consola
 ```bash
 mvn exec:java
 ```
 
 ---
 
-## 💻 Código de Ejemplo Rápido
+## 💻 Ejemplos de Uso
 
+### 1. Selección y cambio de Modos de Almacenamiento en FacturaService
 ```java
-import io.jettra.examples.store.driver.JettraDriver;
-import io.jettra.store.core.StorageMode;
-
-// 1. Abrir conexión con el driver
 try (JettraDriver driver = JettraDriver.open()) {
+    FacturaService service = new FacturaService(driver);
 
-    // 2. Obtener base de datos en modo RAM o DISK_MEMORY
-    String dbName = "mi_tienda_db";
-    driver.getDatabase(dbName, StorageMode.JVM_RAM);
+    // Modo 1: JVM_RAM (Heap/Stack estándar)
+    service.setStorageMode(StorageMode.JVM_RAM);
 
-    // 3. Trabajar con DocumentEngine
-    var docs = driver.getDocumentEngine(dbName, "productos");
-    docs.insert("p1", Map.of("nombre", "Laptop Pro", "precio", 1999.00));
+    // Modo 2: DISK_MEMORY (JettraMemory LSM Panama FFM)
+    service.setStorageMode(StorageMode.DISK_MEMORY);
 
-    // 4. Trabajar con VectorEngine (Embeddings IA)
-    var vectors = driver.getVectorEngine(dbName, "embeddings", 3);
-    vectors.index("v1", new float[]{0.95f, 0.10f, 0.20f});
-    var matches = vectors.searchCosine(new float[]{0.90f, 0.12f, 0.22f}, 1);
+    // Modo 3: OFF_HEAP (JettraStore-OffHeap Slotted-Page Panama FFM)
+    service.setStorageMode(StorageMode.OFF_HEAP);
 
-    // 5. Conmutar a DISK_MEMORY
-    driver.setStorageMode(dbName, StorageMode.DISK_MEMORY);
+    // CRUD
+    Factura f = new Factura();
+    f.setNumero("FAC-2026-001");
+    f.setClienteNombre("Empresa Demo");
+    f.addItem(new DetalleFactura("item_1", "Servidor Virtual", 2, 150.0));
+    
+    service.create(f);
+    Optional<Factura> encontrada = service.findById(f.getId());
 }
+```
+
+### 2. Iniciar Servidor REST con JettraRest y Virtual Threads
+```java
+JettraServer server = new JettraServer(8085);
+FacturaService service = new FacturaService(driver);
+FacturaRestController controller = new FacturaRestController(service);
+
+JettraRestServer.register(server, controller);
+server.start();
+
+// El endpoint responderá en:
+// GET  http://localhost:8085/api/facturas
+// POST http://localhost:8085/api/facturas/storage-mode/OFF_HEAP
 ```

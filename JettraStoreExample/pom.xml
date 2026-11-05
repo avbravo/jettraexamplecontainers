@@ -41,7 +41,41 @@
             <version>${jettra.version}</version>
         </dependency>
 
+        <!-- JettraStore-OffHeap (Páginas Ranuradas Slotted-Page Panama FFM) -->
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraStore-OffHeap</artifactId>
+            <version>${jettra.version}</version>
+        </dependency>
+
+        <!-- JettraEE & JettraRest (Servidor HTTP Virtual Threads y Endpoints REST) -->
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraEE</artifactId>
+            <version>${jettra.frameworks.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraRest</artifactId>
+            <version>${jettra.frameworks.version}</version>
+        </dependency>
+
         <!-- Frameworks auxiliares -->
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraAnnotation</artifactId>
+            <version>${jettra.frameworks.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraFlux</artifactId>
+            <version>${jettra.frameworks.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jettra</groupId>
+            <artifactId>JettraCDI</artifactId>
+            <version>${jettra.frameworks.version}</version>
+        </dependency>
         <dependency>
             <groupId>io.jettra</groupId>
             <artifactId>JettraCollections</artifactId>
@@ -86,7 +120,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.2</version>
                 <configuration>
-                    <argLine>--enable-preview</argLine>
+                    <argLine>--enable-preview --enable-native-access=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED</argLine>
                 </configuration>
             </plugin>
 

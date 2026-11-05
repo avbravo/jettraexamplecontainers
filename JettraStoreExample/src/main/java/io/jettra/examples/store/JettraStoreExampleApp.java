@@ -64,6 +64,9 @@ public class JettraStoreExampleApp {
             // 14. Consultas Masivas findAll() sobre example_factura_db (Millones de Registros)
             io.jettra.examples.store.query.MassiveFindAllMillionRecordsExample.run(driver);
 
+            // 15. Facturación CRUD en 'example_factura_db' con JVM_RAM, DISK_MEMORY y OFF_HEAP
+            io.jettra.examples.store.factura.FacturaCrudExample.run(driver);
+
             // Catálogo final de bases de datos registradas
             ConsoleColor.printHeader("RESUMEN DEL CATÁLOGO DE BASES DE DATOS");
             var dbs = driver.listDatabases();
